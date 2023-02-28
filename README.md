@@ -1,2 +1,11 @@
-# ecommece-app
-A real world e-commerce website that enables users buy leather products online.
+# Navigation
+- Home
+- Shop All  - Filter By (Product type, Color) 
+            - Sort By ( Featured, Newest, Price, Best-selling, Alphabet)
+   
+- Blog
+- Contact
+
+
+- Cart Button
+- Login/Signup Button
