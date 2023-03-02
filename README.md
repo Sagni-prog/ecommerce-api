@@ -3,6 +3,9 @@
 - Home
 - Shop All - Filter By (Product type, Color) - Sort By ( Featured, Newest,
   Price, Best-selling, Alphabet)
+- Shoes
+- Jackets/Clothes
+- Accessories
 - Blog
 - Contact
 
