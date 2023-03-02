@@ -9,6 +9,7 @@
 - Blog
 - Contact
 
+- Search Button
 - Cart Button
 - Login/Signup Button
 
