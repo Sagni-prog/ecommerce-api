@@ -35,7 +35,6 @@ order
    <li>billing_name_on_card</li>
    <li>billing_discount</li>
    <li>billing_discount_code</li>
-   <li>billing_subtotal</li>
    <li>billing_tax</li>
    <li>billing_total</li>
    <li>billing_payment_gateway</li>
