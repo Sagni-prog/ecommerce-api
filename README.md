@@ -1,7 +1,7 @@
 #
 products
 <li>name: Product</li>
-<li>slug: product</li>
+<li>cataory</li>
 <li>description</li>
 <li>price</li>
 <li>features:</li>
