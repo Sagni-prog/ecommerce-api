@@ -18,6 +18,16 @@ catagories
 
 
 #
+ 
+ sub_catagory
+ <li>sub_catagory_id</li>
+ <li>sub_catagory_name</li>
+ <li>catagory_id</li>
+
+
+
+#
+
 order_product
    <li>order_id</li>
    <li>product_id</li>
