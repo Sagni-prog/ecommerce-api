@@ -42,3 +42,19 @@ order
    <li>billing_payment_status</li> 
    <li>billing_shipment_status</li> 
    <li>billing_error</li> 
+
+
+#
+Photo
+  <li>id</li>
+   <li>photo_name</li>
+   <li>photo_path</li>
+   <li>photo_url</li>
+   <li>photo_height</li> 
+   <li>photo_widht</li>
+ 
+ #
+Catagory
+  <li>id</li>
+   <li>catagory_name</li>
+   
