@@ -15,6 +15,19 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('product_name');
+            $table->integer('catagory_id')->unsigned();
+            $table->integer('price');
+            $table->text('description')->nullable();
+            $table->integer('product_quantity');
+            $table->string('product_by_gender');
+            $table->integer('product_discount_percent');
+            $table->date('product_discount_percent')->nullable();
+            $table->date('product_discount_end_date')->nullable();
+            $table->json('features');
+            $table->integer('product_image_id');
+            $table->foreign('product_image_id')->references('id')->on('photo')->onDelete('cascade');
+            $table->foreign('catagory_id')->references('id')->on('catagory')->onDelete('cascade');
             $table->timestamps();
         });
     }
