@@ -5,7 +5,7 @@ products
 <li>product_by_gender</li>
 <li>description</li>
 <li>price</li>
-<li>quantity'</li>
+<li>quantity</li>
 <li>product_image_id</li>
 <li>product_quantity</li>
 <li>product_discount_percent</li>
@@ -13,7 +13,6 @@ products
 <li>product_discount_end_date</li>
 <li>features</li>
 
-<<<<<<< HEAD
 #
 #
 
@@ -29,8 +28,6 @@ catagories
  <li>sub_catagory_name</li>
  <li>catagory_id</li>
 
-=======
->>>>>>> 32207a8a4602b032b0174deb9f1a5cf2e5ecf8cf
 
 
 #
@@ -58,19 +55,3 @@ order
    <li>billing_payment_status</li> 
    <li>billing_shipment_status</li> 
    <li>billing_error</li> 
-
-
-#
-Photo
-  <li>id</li>
-   <li>photo_name</li>
-   <li>photo_path</li>
-   <li>photo_url</li>
-   <li>photo_height</li> 
-   <li>photo_widht</li>
- 
- #
-Catagory
-  <li>id</li>
-   <li>catagory_name</li>
-   
