@@ -2,7 +2,7 @@
 products
 <li>name: Product</li>
 <li>cataory</li>
-<li>sub_cataory</li>
+<li>sub_catagory</li>
 <li>description</li>
 <li>price</li>
 <li>features:</li>
