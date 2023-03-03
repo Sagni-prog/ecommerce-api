@@ -1,16 +1,19 @@
 #
 products
-<li>name: Product</li>
-<li>cataory</li>
-<li>sub_catagory</li>
+<li>Product_name</li>
+<li>cataory_id</li>
+<li>product_by_gender</li>
 <li>description</li>
 <li>price</li>
-<li>features:</li>
+<li>quantity'</li>
+<li>product_image_id</li>
 <li>product_quantity</li>
 <li>product_discount_percent</li>
 <li>product_discount_start_date</li>
 <li>product_discount_end_date</li>
+<li>features</li>
 
+#
 #
 
 catagories
