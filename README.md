@@ -11,20 +11,6 @@ products
 <li>product_discount_start_date</li>
 <li>product_discount_end_date</li>
 
-#
-
-catagories
-   <li>catagories_name</li>
-   <li>catagories_id</li>
-
-
-#
- 
- sub_catagory
- <li>sub_catagory_id</li>
- <li>sub_catagory_name</li>
- <li>catagory_id</li>
-
 
 
 #
