@@ -26,8 +26,6 @@ return new class extends Migration
             $table->date('product_discount_end_date')->nullable();
             $table->json('features');
             $table->integer('product_image_id');
-            $table->foreign('product_image_id')->references('id')->on('photo')->onDelete('cascade');
-            $table->foreign('catagory_id')->references('id')->on('catagory')->onDelete('cascade');
             $table->timestamps();
         });
     }
