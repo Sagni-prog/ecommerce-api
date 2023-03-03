@@ -16,4 +16,11 @@ class Photo extends Model
                     'height',
                     'width'
     ];
+
+   
+
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
+
 }
