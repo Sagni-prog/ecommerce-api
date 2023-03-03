@@ -1,7 +1,8 @@
 #
 products
 <li>name: Product</li>
-<li>slug: product</li>
+<li>cataory</li>
+<li>sub_catagory</li>
 <li>description</li>
 <li>price</li>
 <li>features:</li>
@@ -18,6 +19,16 @@ catagories
 
 
 #
+ 
+ sub_catagory
+ <li>sub_catagory_id</li>
+ <li>sub_catagory_name</li>
+ <li>catagory_id</li>
+
+
+
+#
+
 order_product
    <li>order_id</li>
    <li>product_id</li>
@@ -35,7 +46,6 @@ order
    <li>billing_name_on_card</li>
    <li>billing_discount</li>
    <li>billing_discount_code</li>
-   <li>billing_subtotal</li>
    <li>billing_tax</li>
    <li>billing_total</li>
    <li>billing_payment_gateway</li>
