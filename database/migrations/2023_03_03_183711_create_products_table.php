@@ -25,7 +25,7 @@ return new class extends Migration
             $table->date('product_discount_start_date')->nullable();
             $table->date('product_discount_end_date')->nullable();
             $table->json('features');
-            $table->integer('product_image_id');
+            $table->integer('photo_id');
             $table->timestamps();
         });
     }
