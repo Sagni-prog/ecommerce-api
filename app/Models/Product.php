@@ -24,8 +24,8 @@ class Product extends Model
 
         ];
 
-        protected $casts = [
-            'features' => 'array'
+    protected $casts = [
+             'features' => 'array'
         ];
 
     public function catagory(){

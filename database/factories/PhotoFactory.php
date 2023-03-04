@@ -23,7 +23,7 @@ class PhotoFactory extends Factory
             'product_id' => $product_id,
             'photo_name' => $this->faker->word,
             'photo_path' => 'public/storage/images',
-            'photo_url' => $this->faker->imageUrl('cats'),
+            'photo_url' =>  $this->faker->imageUrl(400, 500, 'cats'),
             'height' => 400,
             'width' => 500
 

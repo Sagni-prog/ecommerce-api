@@ -16,15 +16,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/products', function () {
-   $products = \App\Models\Product::where('product_by_gender','male')->get();
 
-//    foreach($products->features  as $key => $value){
-//     return $key. " : ".$value;
-//    }
+    $products = App\Models\Product::with('photos')->get(); 
 
-   return $products;
+    
+        foreach($products as $product){
+            foreach($product->photos as $photo){
+                echo $photo->photo_name;
+                echo "<br/>";
+                
+            }
+        }
 });
+
 
 Route::get('/catagories', function () {
 
