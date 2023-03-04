@@ -24,8 +24,8 @@ Route::get('/products', function () {
 
         foreach($products as $product){
             foreach($product->photos as $photo){
-                // echo $photo->photo_name;
-                // echo "<br/>";
+                echo $photo->photo_name;
+                echo "<br/>";
 
             }
         }
