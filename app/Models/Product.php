@@ -31,7 +31,7 @@ class Product extends Model
     public function catagory(){
         return $this->belongsTo(Catagory::class);
     }
-    public function photo(){
-        return $this->hasMany(Photo::class,'photo_id');
+    public function photos(){
+        return $this->hasMany(Photo::class);
     }
 }
