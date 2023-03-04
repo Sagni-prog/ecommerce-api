@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Hash;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -16,7 +18,8 @@ class UserFactory extends Factory
      * @return array
      */
 
-
+   
+    
     
     public function definition()
     {
@@ -24,7 +27,10 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => Hash::make(11111111),
+            'phone_number' => "0947102017",
+            'is_admin' => mt_rand(0,1),
+            'is_super_admin' => 0,
             'remember_token' => Str::random(10),
         ];
     }
