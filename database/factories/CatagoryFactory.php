@@ -21,8 +21,6 @@ class CatagoryFactory extends Factory
                 'Jacket',
                 'Bag',
                 'Accessorries',
-                'Womens',
-                'Mens',
                 'Shoes'
             ]),
         ];

@@ -22,13 +22,15 @@ Route::get('/products', function () {
     $products = App\Models\Product::with('photos')->get(); 
 
     
-        foreach($products as $product){
-            foreach($product->photos as $photo){
-                echo $photo->photo_name;
-                echo "<br/>";
+        // foreach($products as $product){
+        //     foreach($product->photos as $photo){
+        //         echo $photo->photo_name;
+        //         echo "<br/>";
                 
-            }
-        }
+        //     }
+        // }
+
+        return view('products',compact('products'));
 });
 
 
