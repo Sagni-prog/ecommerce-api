@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
         // \App\Models\Product::factory(1000)->create();
         // \App\Models\Photo::factory(1000)->create();
 
-        // \App\Models\Catagory::factory()->create(
-        //    [
-        //     'catagory_name' => 'Shoes',
-        //    ]
-        // );
+        \App\Models\Catagory::factory()->create(
+           [
+            'catagory_name' => 'Shoes',
+           ]
+        );
     }
 }

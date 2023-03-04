@@ -19,18 +19,16 @@ Route::get('/', function () {
 
 Route::get('/products', function () {
 
-    $products = App\Models\Product::with('photos')->get(); 
+    $products = App\Models\Product::with('photos')->get();
 
-    
-        // foreach($products as $product){
-        //     foreach($product->photos as $photo){
-        //         echo $photo->photo_name;
-        //         echo "<br/>";
-                
-        //     }
-        // }
 
-        return view('products',compact('products'));
+        foreach($products as $product){
+            foreach($product->photos as $photo){
+                echo $photo->photo_name;
+                echo "<br/>";
+
+            }
+        }
 });
 
 
@@ -40,16 +38,22 @@ Route::get('/catagories', function () {
 
  foreach ($catagory as $product) {
      //do something
+    //   echo $product->catagory_name;
+    //  echo $product->price;
 
-     echo $product->product_name;
-     echo "<br/>";
+    // //  echo $product->product->product_name;
+    //  echo "<br/>";
  }
-//    $catagory = \App\Models\Catagory::all();
-
+   $catagory = \App\Models\Catagory::all();
+   return $catagory;
 
 //    return $catagory->products;
 });
 
+Route::get('/order',function(){
+    $orders=\App\Models\Order::all();
+    return view('order',compact('orders'));
+});
 
 
 // Auth::routes();
