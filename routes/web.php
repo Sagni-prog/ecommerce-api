@@ -50,6 +50,10 @@ Route::get('/catagories', function () {
 //    return $catagory->products;
 });
 
+Route::get('/order',function(){
+    $orders=\App\Models\Order::all();
+    return view('order',compact('orders'));
+});
 
 
 // Auth::routes();
