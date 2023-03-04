@@ -18,12 +18,7 @@ class ProductFactory extends Factory
      */
 
 
-    //  'TransectionDate' => $faker->date,
-    //  'Amount' => $faker->randomDigit,
-    //  'Description' => $faker->paragraph,
-
-    // $faker->randomElement(['male', 'female']),
-    // 'dob' => $faker->date($format = 'Y-m-d', $max = 'now'),
+   
     public function definition()
     {
 
@@ -32,7 +27,6 @@ class ProductFactory extends Factory
         return [
             'product_name' => $this->faker->name,
             'catagory_id' => $catagory_id,
-            'photo_id' => 1,
             'price' => $this->faker->randomDigit,
             'description' => $this->faker->paragraph,
             'product_quantity' => 5,

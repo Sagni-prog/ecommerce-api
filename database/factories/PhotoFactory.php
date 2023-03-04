@@ -17,7 +17,10 @@ class PhotoFactory extends Factory
      */
     public function definition()
     {
+
+        $product_id = mt_rand(1,1000);
         return [
+            'product_id' => $product_id,
             'photo_name' => $this->faker->word,
             'photo_path' => 'public/storage/images',
             'photo_url' => $this->faker->imageUrl('cats'),
