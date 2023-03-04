@@ -26,6 +26,22 @@ Route::get('/products', function () {
    return $products;
 });
 
+Route::get('/catagories', function () {
+
+    $catagory = App\Models\Catagory::find(3)->products()->get();
+
+ foreach ($catagory as $product) {
+     //do something
+
+     echo $product->product_name;
+     echo "<br/>";
+ }
+//    $catagory = \App\Models\Catagory::all();
+
+
+//    return $catagory->products;
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
