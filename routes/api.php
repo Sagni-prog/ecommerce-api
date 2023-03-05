@@ -119,7 +119,7 @@ Route::post('userorder',function(Request $request){
             'quantity' => $request->quantity,
             'product_id' => $request->product_id,
             'order_id'=>$request->order_id
-        ])->with('products.photo')->get()->order()->create([
+        ])->order()->create([
             'user_id' => $request->user_id,
             'billing_firstname' => $request->billing_firstname ,
             'billing_lastname' => $request->billing_lastname,

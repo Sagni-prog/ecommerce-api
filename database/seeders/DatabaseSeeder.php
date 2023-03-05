@@ -22,11 +22,11 @@ class DatabaseSeeder extends Seeder
         \App\Models\Order::factory(3)->create();
         \App\Models\orderProduct::factory(3)->create();
 
-        // \App\Models\Catagory::factory()->create(
-        //    [
-        //     'catagory_name' => 'Bags',
-        //    ]
-        // );
+        \App\Models\Catagory::factory()->create(
+           [
+            'catagory_name' => 'Bags',
+           ]
+        );
 
     }
 }
