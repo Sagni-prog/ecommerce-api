@@ -31,11 +31,10 @@ Route::get('/catagories', function () {
 
 Route::get('/order',function(){
 
-    $order = App\Models\Order::with('orderProducts.products.photos')->get();
 
 
     $orderproduct = App\Models\orderProduct::with('products.photos','order.user')->get();
-    return $order;
+    return $orderproduct;
 });
 
 
@@ -99,9 +98,9 @@ Route::get('/order',function(){
     return $orders;
 });
     //  return $order->order;
-    
 
-   
+
+
 
 
 Route::get('userorder',function(){
@@ -110,9 +109,35 @@ Route::get('userorder',function(){
 });
 Route::post('userorder',function(Request $request){
     try{
-        $order=\App\Models\Order::create($request->all());
+         $product=\App\Models\Product::find($request->order_id)->get();
+         if(!$product){
+            return response()->json([
+            'msg'=>"no product"
+            ],404);
+         }
+        $pr=\App\Models\orderProduct::create([
+            'quantity' => $request->quantity,
+            'product_id' => $request->product_id,
+            'order_id'=>$request->order_id
+        ])->with('products.photo')->get()->order()->create([
+            'user_id' => $request->user_id,
+            'billing_firstname' => $request->billing_firstname ,
+            'billing_lastname' => $request->billing_lastname,
+            'billing_email' => $request->billing_email,
+            'billing_country' => $request->billing_country,
+            'billing_city' => $request->billing_city,
+            'billing_address_line1' =>$request->billing_address_line1,
+            'billing_address_line2' => $request->billing_address_line2,
+            'billing_total' => $request->billing_total,
+            'billing_payment_gateway' =>  $request->billing_payment_gateway,
+            'billing_payment_status' => $request->billing_payment_status,
+            'billing_payment_shipment_status' => $request->billing_payment_shipment_status,
+            'billing_error' => $request->billing_error,
+        ]);
+
         return response()->json([
-         'data'=>$order
+         'data'=>$pr
+
         ],200);
     }catch(\Exception $e){
         return response()->json([
