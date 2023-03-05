@@ -3,10 +3,20 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
 
 Route::get('/products', function () {
 
@@ -40,12 +50,12 @@ Route::get('/order',function(){
 
 
     //  return $order->order;
+    $orders = \App\Models\orderProduct::with('products.photos','order')->get();
+    return $orders;
 
-    $o = App\Models\orderProduct::with('products','order')->find(1);
-      foreach($o->products as $product){
-        echo $product->price;
-        echo "<br/>";
-      }
+    // $o = \App\Models\orderProduct::with('products.photos','order')->get();
+    //   foreach($o->products as $product){
+    //     echo $product->price;
+    //     echo "<br/>";
+    //   }
 });
-
-
