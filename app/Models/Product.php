@@ -34,4 +34,7 @@ class Product extends Model
     public function photos(){
         return $this->hasMany(Photo::class);
     }
+    public function orderProducts(){
+        return $this->belongsToMany(orderProduct::class,'order_products_products');
+    }
 }

@@ -18,10 +18,7 @@
                         <div class="card-body p-5">
 
                           <p class="lead fw-bold mb-5" style="color: #f37a27;">Purchase Reciept</p>
-                          @php $i = 0; @endphp
-                            @foreach ($product->photo as $photo)
-                            @php $i++; @endphp
-                            @if ($i == 1)
+
                           <div class="row">
                             <div class="col mb-3">
                               <p class="small text-muted mb-1">Date</p>
@@ -29,7 +26,7 @@
                             </div>
                             <div class="col mb-3">
                               <p class="small text-muted mb-1">Order No.</p>
-                              <p>{{$order->order->billing_email}}</p>
+                              <p>{{$order->billing_email}}</p>
                             </div>
                           </div>
 
@@ -52,10 +49,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-8 col-lg-9">
-                                  <p class="mb-0">address</p>
+                                  <p class="mb-0">Product price</p>
                                 </div>
                                 <div class="col-md-4 col-lg-3">
-                                  <p class="mb-0">{{$order->products->price}}</p>
+                                  <p class="mb-0">${{$order->price}}</p>
                                 </div>
                               </div>
                           </div>

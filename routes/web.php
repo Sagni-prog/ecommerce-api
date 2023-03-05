@@ -50,8 +50,8 @@ Route::get('/catagories', function () {
 
 Route::get('/order',function(){
 
-    $orders=\App\Models\Order::all()->orderproducts()->get();
-    return view('order',compact('orders'));
+    // $orders=\App\Models\Order::all()->orderproducts()->get();
+    // return view('order',compact('orders'));
 
 //    $order = App\Models\orderProduct::with('order')->get();
 // $order = App\Models\Product::with('orderProduct')->get();
@@ -68,11 +68,24 @@ Route::get('/order',function(){
 });
 Route::get('/orderproduct',function(){
     // $orders=\App\Models\OrderProduct::with('products','order')->get();
-    $orders = \App\Models\orderProduct::with('products','order')->get();
-    return $orders;
+    $orders = \App\Models\orderProduct::with('products.photos','order')->get();
+    // foreach($orders as $orderproduct ){
+
+    //     foreach($orderproduct->products as $p)
+    //   {
+    //     echo $p->price;
+    //     echo "<br/>";
+    //     echo $p->product_name;
+    //     echo $p->photo_id;
+    //     echo "<br/>";
+
+    //   }
+    //   echo $orderproduct->order;
+     return $orders;
+    // }
 
 
-    // return view('orderproduct',compact('orders'));
+
 });
 
 
