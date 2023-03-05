@@ -17,7 +17,10 @@ class OrderProductFactory extends Factory
      */
     public function definition()
     {
+
+        
         return [
+            'order_id' => mt_rand(1,50),
             'quantity'=>$this->faker->randomDigit,
             'product_id'=>$this->faker->randomDigit
             //

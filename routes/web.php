@@ -37,22 +37,29 @@ Route::get('/catagories', function () {
     $catagory = App\Models\Catagory::find(3)->products()->get();
 
  foreach ($catagory as $product) {
-     //do something
-    //   echo $product->catagory_name;
-    //  echo $product->price;
-
-    // //  echo $product->product->product_name;
-    //  echo "<br/>";
+    
  }
    $catagory = \App\Models\Catagory::all();
-   return $catagory;
+//    return $catagory;
 
+  $p = App\Models\Product::with('catagory')->get();
+  
+  return $p;
 //    return $catagory->products;
 });
 
 Route::get('/order',function(){
-    $orders=\App\Models\Order::all();
-    return view('order',compact('orders'));
+//    $order = App\Models\orderProduct::with('order')->get();
+// $order = App\Models\Product::with('orderProduct')->get();
+
+
+    //  return $order->order;
+
+    $o = App\Models\orderProduct::with('products','order')->find(1);
+      foreach($o->products as $product){
+        echo $product->price;
+        echo "<br/>";
+      }
 });
 
 
