@@ -40,30 +40,41 @@ Route::get('/order',function(){
 
 
 Route::post('/place-order',function(Request $request){
-      $order = App\Models\Order::create(
-                        [
-                            'user_id' => $request->user_id,
-                            'billing_firstname' => $request->billing_firstname ,
-                            'billing_lastname' => $request->billing_lastname,
-                            'billing_email' => $request->billing_email,
-                            'billing_country' => $request->billing_country,
-                            'billing_city' => $request->billing_city,
-                            'billing_address_line1' =>$request->billing_address_line1,
-                            'billing_address_line2' => $request->billing_address_line2,
-                            'billing_total' => $request->billing_total,
-                            'billing_payment_gateway' =>  $request->billing_payment_gateway,
-                            'billing_payment_status' => $request->billing_payment_status,
-                            'billing_payment_shipment_status' => $request->billing_payment_shipment_status,
-                            'billing_error' => $request->billing_error,
-                         ]
-                        );
+    //   $order = App\Models\Order::create(
+    //                     [
+    //                         'user_id' => $request->user_id,
+    //                         'billing_firstname' => $request->billing_firstname ,
+    //                         'billing_lastname' => $request->billing_lastname,
+    //                         'billing_email' => $request->billing_email,
+    //                         'billing_country' => $request->billing_country,
+    //                         'billing_city' => $request->billing_city,
+    //                         'billing_address_line1' =>$request->billing_address_line1,
+    //                         'billing_address_line2' => $request->billing_address_line2,
+    //                         'billing_total' => $request->billing_total,
+    //                         'billing_payment_gateway' =>  $request->billing_payment_gateway,
+    //                         'billing_payment_status' => $request->billing_payment_status,
+    //                         'billing_payment_shipment_status' => $request->billing_payment_shipment_status,
+    //                         'billing_error' => $request->billing_error,
+    //                      ]
+    //                     );
 
-                 for($i = 0; $i < 3; $i++){
-                        $order->orderProducts()->create([
-                            'quantity' => $request->quantity,
-                            'product_id' => $request->product_id
-                        ]);
-                    }
+                  $carts = App\Models\Cart::with('products')->where('user_id',$request->user_id)->get();
+
+                  return $carts;
+ 
+                        // foreach($carts as $cart){
+                        //     $order->orderProducts()->create([
+                        //             'quantity' => $request->quantity,
+                        //             'product_id' => $cart->products->id
+                        //         ]);
+                        // }
+
+                //  for($i = 0; $i < 3; $i++){
+                //         $order->orderProducts()->create([
+                //             'quantity' => $request->quantity,
+                //             'product_id' => $request->product_id
+                //         ]);
+                //     }
                         // return $order->with('orderProduct')->first();
 
 
@@ -132,9 +143,9 @@ Route::post('cart',function(Request $request){
 
 });
 Route::get('carts',function(Request $request){
-      $cart = App\Models\Cart::with('product')->get();
+      $cart = App\Models\Cart::with('products')->get();
 
-    $cart;
+  return $cart;
 
 });
 
