@@ -101,9 +101,6 @@ Route::get('/order',function(){
     //  return $order->order;
     
 
-   
-
-
 Route::get('userorder',function(){
     $u=\App\Models\Order::with('user')->get();
    return $u;
@@ -119,6 +116,25 @@ Route::post('userorder',function(Request $request){
             'msg'=> $e->getMessage()
         ]);
         }
+
+});
+
+Route::post('cart',function(Request $request){
+    //   $cart = App\Models\Cart::create($request->all());
+      
+    // $cart;
+
+    $cart = App\Models\Product::find(2)->carts()->create(
+        $request->all()
+    );
+
+    return $cart;
+
+});
+Route::get('carts',function(Request $request){
+      $cart = App\Models\Cart::with('product')->get();
+
+    $cart;
 
 });
 
