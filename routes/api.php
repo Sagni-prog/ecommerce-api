@@ -50,7 +50,7 @@ Route::get('/order',function(){
 
 
     //  return $order->order;
-    $orders = \App\Models\orderProduct::with('products.photos','order')->get();
+       $orders = \App\Models\orderProduct::with('products.photos','order')->get();
     return $orders;
 
     // $o = \App\Models\orderProduct::with('products.photos','order')->get();
@@ -58,4 +58,21 @@ Route::get('/order',function(){
     //     echo $product->price;
     //     echo "<br/>";
     //   }
+});
+Route::get('userorder',function(){
+    $u=\App\Models\Order::with('user')->get();
+   return $u;
+});
+Route::post('userorder',function(Request $request){
+    try{
+        $order=\App\Models\Order::create($request->all());
+        return response()->json([
+         'data'=>$order
+        ],200);
+    }catch(\Exception $e){
+        return response()->json([
+            'msg'=> $e->getMessage()
+        ]);
+        }
+
 });

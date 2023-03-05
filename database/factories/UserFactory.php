@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 /**
@@ -18,9 +18,9 @@ class UserFactory extends Factory
      * @return array
      */
 
-   
-    
-    
+
+
+
     public function definition()
     {
         return [
