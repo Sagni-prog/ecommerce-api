@@ -67,5 +67,28 @@ Route::post('/place-order',function(Request $request){
 
 });
 
+Route::post('/add-products',function(Request $request){
+     $products = App\Models\Product::create(
+        [
+                            'catagory_id' => $request->catagory_id,
+                            'product_name' => $request->product_name,
+                            'product_quantity' => $request->product_quantity,
+                            'price' => $request->price,
+                            'description' => $request->description,
+                            'features' => $request->features,
+                            'product_by_gender' => $request->product_by_gender,
+                            'product_discount_percent' => $request->product_discount_percent,
+               ]
+          )->photos()->create([
+                                'photo_name' => $request->photo_name,
+                                'photo_path' => $request->photo_path,
+                                'photo_url' => $request->photo_url,
+                                'height' => $request->height,
+                                'width' => $request->width
+          ]);
+
+          return $products;
+});
+
 
 
