@@ -28,9 +28,7 @@ Route::get('/products', function () {
 Route::get('/catagories', function () {
 
 
-   $catagory = \App\Models\Catagory::with('products')->whereHas('products',function($q){
-        $q->with('photos');
-   })->get();
+   $catagory = \App\Models\Catagory::with('products.photos')->get();
 
   
   return $catagory;
