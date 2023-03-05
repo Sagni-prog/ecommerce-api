@@ -22,7 +22,8 @@ class OrderProductFactory extends Factory
         return [
             'order_id' => mt_rand(1,50),
             'quantity'=>$this->faker->randomDigit,
-            'product_id'=>$this->faker->randomDigit
+            'product_id'=>$this->faker->randomDigit,
+            'order_id'=>$this->faker->randomDigit
             //
         ];
     }

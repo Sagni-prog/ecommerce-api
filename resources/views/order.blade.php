@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md ">
-                <div class="card text-center">
+                <div class="card text-center">\
                     <div class="card-header">
                       Featured
                     </div>
@@ -22,6 +22,7 @@
                         <p></p>{{$order->billing_total}}</p>
                          <p>{{$order->billing_payment_gateway}}</p>
                           <p>{{$order->billing_payment_status}}</p>
+                          {{-- <p>{{$order->orderproduct->product_id}}</p> --}}
                       <a href="#" class="btn btn-primary">{{$order->billing_email}}</a>
                     </div>
                     <div class="card-footer text-muted mb-6">
