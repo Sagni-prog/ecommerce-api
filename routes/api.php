@@ -130,12 +130,12 @@ Route::post('userorder',function(Request $request){
        $product=App\Models\Product::find($request->product_id)->orderproducts()->create(
        $request->all()
         );
-        $orderproductuser=App\Models\orderProduct::find($request->order_id)->order()->create($request->all())->user()->find($request->user_id);
+        $orderproduct=App\Models\orderProduct::find($request->order_id)->order()->create($request->all())->user()->find($request->user_id);
         $order=App\Models\Order::find($request->order_id);
         $pr=App\Models\Product::find($request->product_id);
         return response()->json([
             $product,
-            $orderproductuser,
+            $orderproduct,
             $order,
             $pr
         ]);
