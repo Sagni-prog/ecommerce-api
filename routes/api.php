@@ -4,16 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 // use Request;
 
-Route:/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -42,7 +33,7 @@ Route::get('/order',function(){
 
     $order = App\Models\Order::with('orderProducts.products.photos')->get();
 
-<<<<<<< HEAD
+
     $orderproduct = App\Models\orderProduct::with('products.photos','order.user')->get();
     return $order;
 });
@@ -103,15 +94,31 @@ Route::post('/add-products',function(Request $request){
 
 
 
-=======
-    //  return $order->order;
+Route::get('/order',function(){
     $orders = \App\Models\orderProduct::with('products.photos','order')->get();
     return $orders;
-
-    // $o = \App\Models\orderProduct::with('products.photos','order')->get();
-    //   foreach($o->products as $product){
-    //     echo $product->price;
-    //     echo "<br/>";
-    //   }
 });
->>>>>>> 7bd4f1829d14f6a982b5ccef5aa25e75c15a50d0
+    //  return $order->order;
+    
+
+   
+
+
+Route::get('userorder',function(){
+    $u=\App\Models\Order::with('user')->get();
+   return $u;
+});
+Route::post('userorder',function(Request $request){
+    try{
+        $order=\App\Models\Order::create($request->all());
+        return response()->json([
+         'data'=>$order
+        ],200);
+    }catch(\Exception $e){
+        return response()->json([
+            'msg'=> $e->getMessage()
+        ]);
+        }
+
+});
+
