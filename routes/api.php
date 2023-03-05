@@ -12,13 +12,6 @@ Route::get('/products', function () {
 
     $products = App\Models\Product::with('photos','catagory')->get();
 
-
-        foreach($products as $product){
-            foreach($product->photos as $photo){
-                // return $photo;
-            }
-        }
-
         return $products;
 
 
@@ -35,17 +28,11 @@ Route::get('/catagories', function () {
 });
 
 Route::get('/order',function(){
-//    $order = App\Models\orderProduct::with('order')->get();
-// $order = App\Models\Product::with('orderProduct')->get();
 
+    $order = App\Models\Order::with('orderProducts.products.photos')->get();
 
-    //  return $order->order;
-
-    $o = App\Models\orderProduct::with('products','order')->find(1);
-      foreach($o->products as $product){
-        echo $product->price;
-        echo "<br/>";
-      }
+    $orderproduct = App\Models\orderProduct::with('products.photos','order')->get();
+    return $order;
 });
 
 
