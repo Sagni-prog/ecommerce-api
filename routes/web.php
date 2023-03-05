@@ -51,8 +51,16 @@ Route::get('/catagories', function () {
 });
 
 Route::get('/order',function(){
-    $orders=\App\Models\Order::all();
+    $orders=\App\Models\Order::all()->orderproducts()->get();
     return view('order',compact('orders'));
+});
+Route::get('/orderproduct',function(){
+    // $orders=\App\Models\OrderProduct::with('products','order')->get();
+    $orders = \App\Models\orderProduct::with('products','order')->get();
+    return $orders;
+
+
+    // return view('orderproduct',compact('orders'));
 });
 
 

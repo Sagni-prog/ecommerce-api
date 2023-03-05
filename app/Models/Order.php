@@ -24,4 +24,7 @@ class Order extends Model
                     'billing_payment_shipment_status',
                     'billing_error',
     ];
+   public function orderproduct(){
+    return $this->hasOne(Order::class);
+   }
 }

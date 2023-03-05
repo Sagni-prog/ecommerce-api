@@ -19,7 +19,8 @@ class OrderProductFactory extends Factory
     {
         return [
             'quantity'=>$this->faker->randomDigit,
-            'product_id'=>$this->faker->randomDigit
+            'product_id'=>$this->faker->randomDigit,
+            'order_id'=>$this->faker->randomDigit
             //
         ];
     }

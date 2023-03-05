@@ -18,10 +18,10 @@ class ProductFactory extends Factory
      */
 
 
-   
+
     public function definition()
     {
-
+        $order=mt_rand(1,5);
         $catagory_id = mt_rand(1, 4);
         $dis = mt_rand(5,50);
         return [
