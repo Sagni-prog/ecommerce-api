@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Sanctum\HasApiTokens;
@@ -51,13 +52,6 @@ class AuthController extends Controller
         }
     }
 
-    protected function login(Request $request){
-
-use App\Models\User;
-use Auth;
-
-class AuthController extends Controller
-{
     public function login(Request $request){
 
         $request->validate([
@@ -79,5 +73,9 @@ class AuthController extends Controller
                   "user" => $user,
                   "token" => $token
            ]);
+
     }
 }
+
+    
+
