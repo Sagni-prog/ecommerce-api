@@ -82,7 +82,11 @@ Route::post('/place-order',function(Request $request){
                                 $product->orderProducts()->attach($orderProduct);
                            }
                 }
+                $userorder=\App\Models\Order::with('orderproducts.products.photos','user.photos')->get();
+                // $userorder = App\Models\Order::all();
 
+
+                                return $userorder;
 
 
 });
@@ -136,7 +140,7 @@ Route::get('userorder',function(){
 });
 Route::post('userorder',function(Request $request){
     try{
-       
+
 
        $product=App\Models\Product::find($request->product_id)->orderproducts()->create(
        $request->all()
