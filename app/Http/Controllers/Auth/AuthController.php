@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+// use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Sanctum\HasApiTokens;
 
 class AuthController extends Controller
 {
-    use HasApiTokens, HasFactory,Notifiable;
+    // use HasApiTokens, HasFactory,Notifiable;
 
     public function register(Request $request){
         try{
@@ -59,20 +60,23 @@ class AuthController extends Controller
               'password' => 'required'
         ]);
 
-           if(!Auth::attempt($request->only('email','password'))){
-              return response()->json([
-                "message" => "anAuthorized"
-              ],401);
-           }
+       
 
-           $user = User::with('photos')->where('email',$request->email)->firstOrFail();
 
-           $token = $user->createToken('auth_token')->plainTextToken;
+        $user = User::where('email',$request->email)->with('photos')->first();
+     
+        if(!Hash::check($request->password, $user->password)){
+            return response()->json([
+                "message" => "Wrong credentials"
+            ]);
+         }
 
-           return response()->json([
-                  "user" => $user,
-                  "token" => $token
-           ]);
+
+         $token = $user->createToken('user_token')->plainTextToken;
+         return response()->json([
+             "token" => $token,
+             "user" => $user
+         ]);
 
     }
 }
