@@ -10,7 +10,7 @@ class Photo extends Model
     use HasFactory;
 
     protected $fillable = [
-                    'product_id',
+                    'photoable_id',
                     'photo_name',
                     'photo_path',
                     'photo_url',
@@ -18,7 +18,10 @@ class Photo extends Model
                     'width'
     ];
 
-
+    public function photoable()
+    {
+        return $this->morphTo();
+    }
 
     public function product(){
         return $this->belongsTo(Product::class);

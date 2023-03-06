@@ -18,7 +18,7 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'user_id'=>$this->faker->numberBetween(1, 400),
+            'user_id'=>$this->faker->numberBetween(1, 4),
             'billing_firstname'=>$this->faker->name,
             'billing_lastname'=>$this->faker->name,
             'billing_email'=>$this->faker->safeEmail,
