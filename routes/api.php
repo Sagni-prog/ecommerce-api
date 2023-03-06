@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 
 
 
-Route::get('login',[AuthController::calss,'login']);
+Route::get('login',[AuthController::class,'login']);
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -15,7 +15,7 @@ Route::get('login',[AuthController::calss,'login']);
 // });
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    
+
 });
 Route::post('/register',[\App\Http\Controllers\Auth\AuthController::class,'register']);
 
