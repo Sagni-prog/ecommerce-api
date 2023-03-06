@@ -136,12 +136,7 @@ Route::get('userorder',function(){
 });
 Route::post('userorder',function(Request $request){
     try{
-        //  $product=\App\Models\Product::find($request->order_id)->get();
-        //  if(!$product){
-        //     return response()->json([
-        //     'msg'=>"no product"
-        //     ],404);
-        //  }
+       
 
        $product=App\Models\Product::find($request->product_id)->orderproducts()->create(
        $request->all()
