@@ -17,7 +17,9 @@ Route::get('/products', function () {
         return $products;
 
 
+
 });
+
 
 
 Route::get('/catagories', function () {
@@ -41,7 +43,7 @@ Route::get('/order',function(){
 Route::post('/place-order',function(Request $request){
       $order = App\Models\Order::create(
                         [
-                            'user_id' => $request->user_id,
+                            'user_id'=>$request->user_id,
                             'billing_firstname' => $request->billing_firstname ,
                             'billing_lastname' => $request->billing_lastname,
                             'billing_email' => $request->billing_email,
@@ -61,7 +63,7 @@ Route::post('/place-order',function(Request $request){
 
                 $carts = App\Models\Cart::with('products')->where('user_id',$request->user_id)->get();
 
-                  return $carts;
+                //   return $carts;
 
                         // foreach($carts as $cart){
                         //     $order->orderProducts()->create([
@@ -72,7 +74,7 @@ Route::post('/place-order',function(Request $request){
 
 
                 foreach($carts as $cart){
-                   
+
                         $orderProduct = $order->orderProducts()->create([
                                 'quantity' => $cart->quantity,
                             ]);
@@ -83,9 +85,13 @@ Route::post('/place-order',function(Request $request){
 
 
 
-                return $order;
-                
-            
+});
+Route::get('/signleorder',function(){
+    $userorder=\App\Models\Order::find(2)->with('orderproducts.products.photos','user.photo')->get();
+    // $userorder = App\Models\Order::all();
+
+
+                    return $userorder;
 
 });
 
@@ -115,7 +121,7 @@ Route::post('/add-products',function(Request $request){
 
 
 Route::get('/order',function(){
-    $orders = \App\Models\orderProduct::with('products.photos','order')->get();
+    $orders = \App\Models\orderProduct::with('products.photos','order.user')->get();
     return $orders;
 });
     //  return $order->order;
@@ -140,12 +146,12 @@ Route::post('userorder',function(Request $request){
        $product=App\Models\Product::find($request->product_id)->orderproducts()->create(
        $request->all()
         );
-        $orderproductuser=App\Models\orderProduct::find($request->order_id)->order()->create($request->all())->user()->find($request->user_id);
+        $orderproduct=App\Models\orderProduct::find($request->order_id)->order()->create($request->all())->user()->find($request->user_id);
         $order=App\Models\Order::find($request->order_id);
         $pr=App\Models\Product::find($request->product_id);
         return response()->json([
             $product,
-            $orderproductuser,
+            $orderproduct,
             $order,
             $pr
         ]);

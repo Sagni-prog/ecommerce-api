@@ -31,8 +31,9 @@ class Product extends Model
     public function catagory(){
         return $this->belongsTo(Catagory::class);
     }
-    public function photos(){
-        return $this->hasMany(Photo::class);
+    public function photos()
+    {
+        return $this->morphMany(Photo::class, 'photoable');
     }
     public function orderProducts(){
         return $this->belongsToMany(orderProduct::class,'order_products_products');
