@@ -52,8 +52,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cart::class);
     }
-    public function photo()
+    public function photos()
     {
-        return $this->morphOne(Photo::class, 'photoable');
+        return $this->morphMany(Photo::class, 'photoable');
     }
 }

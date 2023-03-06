@@ -11,6 +11,7 @@ class Photo extends Model
 
     protected $fillable = [
                     'photoable_id',
+                    'photoable_type',
                     'photo_name',
                     'photo_path',
                     'photo_url',
