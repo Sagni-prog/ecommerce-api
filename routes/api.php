@@ -190,20 +190,3 @@ Route::get('order-product',function(){
    return $orderProduct->products;
 });
 
-Route::post('create-user',function(Request $request){
-    $user = App\Models\User::create([
-                                        'name' => $request->name,
-                                        'email' => $request->email,
-                                        'password' => $request->password,
-                                        'phone_number' => $request->phone_number,
-    ])->photos()->create([
-                            'photo_name' => $request->photo_name,
-                            'photo_path' => $request->photo_path,
-                            'photo_url' => $request->photo_url,
-                            'height' => $request->height,
-                            'width' => $request->width
-    ]);
-
-       return $user;
-});
-
