@@ -36,7 +36,7 @@ class AuthController extends Controller
                     "status"=>false,
                     "message"=>"valitor error",
                     "error"=>$uservalidator->errors()
-                ],401);
+                ],404);
             }
             $user=User::create(
                 [
