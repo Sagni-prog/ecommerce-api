@@ -17,6 +17,7 @@ Route::post('/register',[\App\Http\Controllers\Auth\AuthController::class,'regis
 // });
 
 Route::middleware(['auth:sanctum'])->group(function () {
-
+    Route::get('/users',[AuthController::class,'getAll']);
+    Route::post('update-profile',[AuthController::class,'updateProfile']);
 });
 
