@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ResetPassword;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\Request;
@@ -10,10 +11,10 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 // use Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Sanctum\HasApiTokens;
-use App\Mail\ResetPassword;
-use Mail;
 
 class AuthController extends Controller
 {
@@ -62,31 +63,25 @@ class AuthController extends Controller
               'password' => 'required'
         ]);
 
-       
+
 
 
         $user = User::where('email',$request->email)->with('photos')->first();
-     
-        if(!Hash::check($request->password, $user->password)){
 
-            $token = $user->createToken('user_token')->plainTextToken;
-            return response()->json([
-                "token" => $token,
-                "user" => $user
-            ]);
-          
-         }
-         else{
+        if(!Hash::check($request->password, $user->password)){
             return response()->json([
                 "message" => "Wrong credentials"
             ]);
          }
 
 
-        
+         $token = $user->createToken('user_token')->plainTextToken;
+         return response()->json([
+             "token" => $token,
+             "user" => $user
+         ]);
 
     }
-
 
     public function updateProfile(Request $request){
 
@@ -98,22 +93,22 @@ class AuthController extends Controller
             ]);
 
             if($request->hasFile('photo')){
-            
+
                 $ext = $request->file('photo')->extension();
-                
+
                 $image_name = 'image';
-               
-                
+
+
                 $filename = 'image-' . time() . '.' . $ext;
-            
+
              $path = $request->file('photo')->storeAs('profile-photo', $filename);
              $image_url = Storage::url($path);
-      
+
              $data = $this->getDimension($path);
              $width = $data['width'];
              $height = $data['height'];
 
-            
+
           $user->photo()->update([
                 "photo_name" => $filename,
                 "photo_path" => $path,
@@ -145,5 +140,7 @@ class AuthController extends Controller
     }
 }
 
-    
+
+
+
 
