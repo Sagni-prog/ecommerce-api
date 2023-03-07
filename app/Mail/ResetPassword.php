@@ -16,7 +16,7 @@ class ResetPassword extends Mailable
 
    
 
-    public $data;
+    protected $data;
 
 
     public function __construct($data)

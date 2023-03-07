@@ -84,8 +84,8 @@ class AuthController extends Controller
     }
 
     public function updateProfile(Request $request){
-
-        $user = Auth::user()->first();
+try{
+        $user = Auth::user();
 
           $isUpdated =  Auth::user()->update([
                 "name" => $request->name,
@@ -119,7 +119,12 @@ class AuthController extends Controller
 
        }
 
-            return $user->with('photos')->first();
+            return $user;
+    }catch(\Exception $e){
+        return response()->json([
+            'msg' => $e->getMessage()
+        ]);
+    }
      }
 
 
