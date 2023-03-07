@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Sanctum\HasApiTokens;
+use App\Mail\ResetPassword;
+use Mail;
 
 class AuthController extends Controller
 {
@@ -132,6 +134,14 @@ class AuthController extends Controller
         return response()->json([
             "user" => $users
         ]);
+    }
+
+    public function sendMail(){
+
+        $data = [
+            "pin" => 123
+        ];
+        Mail::to("sagnialemayehu69@gmail.com")->send(new ResetPassword($data));
     }
 }
 
