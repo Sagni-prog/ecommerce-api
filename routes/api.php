@@ -4,12 +4,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
-
+Route::get('/send',[AuthController::class,'sendMail']);
 
 Route::post('/login',[AuthController::class,'login']);
 Route::post('/register',[Auth\AuthController::class,'register']);
 
-Route::get('/send',[AuthController::class,'sendMail']);
+
 
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
