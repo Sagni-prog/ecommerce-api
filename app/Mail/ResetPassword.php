@@ -49,8 +49,13 @@ class ResetPassword extends Mailable
     public function content()
     {
         return new Content(
+<<<<<<< HEAD
             view: 'view.emails.reset_password',
 
+=======
+            view: 'emails.reset_password',
+           
+>>>>>>> 9e16f41111171227cdd61a7aaa849c56c0c3f722
         );
     }
 
