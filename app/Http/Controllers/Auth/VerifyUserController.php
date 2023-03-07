@@ -17,13 +17,20 @@ use Illuminate\Support\Carbon;
 class VerifyUserController extends Controller
 {
 
+ public $email;
+
+  public function __construct(Request $request)
+    {
+        $this->email = Crypt::decrypt($request->Cookie('user'));
+        
+    }
+
     public function verifyUser(Request $request){
 
 
         try {
-             $email = Crypt::decrypt($request->Cookie('user'));
 
-             $user = User::where('email',$email)->first();
+             $user = User::where('email',$this->email)->first();
 
             if($user->token_expires_at){
                return response()->json([
@@ -61,12 +68,22 @@ class VerifyUserController extends Controller
 
     }
 
+
+
     public function resendToken(){
 
-        try {
-            $email = Crypt::decrypt($request->Cookie('user'));
+    
 
-            if(!Mail::to($email)->send(new VerificationMail($data))){
+        try {
+         
+
+            $verification_token = random_int(0000,9999);
+
+            $data = [
+              'verification_token' =>  $verification_token
+            ];
+
+            if(!Mail::to($this->email)->send(new VerificationMail($data))){
                     
                               
                 return response()->json([
@@ -76,17 +93,24 @@ class VerifyUserController extends Controller
               }
 
 
-              $user = User::where('email',$email)->first();
+              $user = User::where('email',$this->email)->first();
 
               if($user->token_expires_at){
                   $user->update([
-                    'token_expires_at' => null
+                    'token_created_at' => Carbon::now(),
+                    'token_expires_at' => null,
+                    'verification_token' =>  $verification_token
                   ]);
 
                   return response()->json([
                     "message" => "resent"
                  ]);
               }
+
+              $user->update([
+                'token_created_at' => Carbon::now(),
+                'verification_token' =>  $verification_token
+              ]);
               return response()->json([
                       "message" => "resent"
               ]);
