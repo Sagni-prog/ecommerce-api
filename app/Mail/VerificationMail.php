@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Address;
 
 class VerificationMail extends Mailable
 {
@@ -26,35 +27,27 @@ class VerificationMail extends Mailable
         $this->data = $data;
     }
 
-    /**
-     * Get the message envelope.
-     *
-     * @return \Illuminate\Mail\Mailables\Envelope
-     */
+    
     public function envelope()
     {
         return new Envelope(
+            from: new Address('sagnialemayehu69@gmail.com','Sagni'),
             subject: 'Verification Mail',
         );
     }
 
-    /**
-     * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
-     */
+ 
     public function content()
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.verify_user',
+            with: [
+                'data' => $this->data
+            ]
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array
-     */
+    
     public function attachments()
     {
         return [];

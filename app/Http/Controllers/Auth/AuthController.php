@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Carbon;
+use App\Mail\VerificationMail;
 
 class AuthController extends Controller
 {
@@ -27,6 +29,8 @@ class AuthController extends Controller
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required'],
             ]);
+
+            $verification_token = random_int(0000,9999);
             if($uservalidator->fails()){
                 return response()->json([
                     "status"=>false,
@@ -38,9 +42,37 @@ class AuthController extends Controller
                 [
                     'name'=>$request->name,
                     'email'=>$request->email,
-                    'password'=>Hash::make($request->password)
+                    'password'=>Hash::make($request->password),
+                    'verification_token' => $verification_token,
+            
                 ]
                 );
+
+                if($user){
+
+
+                    $data = [
+                        'verification_token' => $verification_token
+                    ];
+                   if(!Mail::to($request->email)->send(new VerificationMail($data))){
+                              
+                            return response()->json([
+                                'message' =>'not sent'
+                            ]);
+
+                          }else{
+                        
+
+                           return response()->json([
+                            'message' => 'sent'
+                          ],200);
+                          }
+                }
+                else{
+                
+                }
+
+              
             return response()->json([
                 "status"=>true,
                 "message"=>"user created succesfully",
@@ -62,8 +94,6 @@ class AuthController extends Controller
               'email' => 'required',
               'password' => 'required'
         ]);
-
-
 
 
         $user = User::where('email',$request->email)->with('photos')->first();

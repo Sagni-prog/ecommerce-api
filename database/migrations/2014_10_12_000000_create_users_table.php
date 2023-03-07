@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('is_admin')->nullable()->default(false);
             $table->boolean('is_super_admin')->nullable()->default(false);
+            $table->integer('verification_token')->nullable();
+            $table->timestamp('token_created_at')->nullable();
+            $table->timestamp('token_expires_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
