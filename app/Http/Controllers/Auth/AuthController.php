@@ -136,7 +136,7 @@ class AuthController extends Controller
         $data = [
             "pin" => 123
         ];
-        Mail::to("sagnialemayehu69@gmail.com")->send(new ResetPassword($data));
+        Mail::to("natnaeln4d@gmail.com")->send(new ResetPassword($data));
     }
 }
 

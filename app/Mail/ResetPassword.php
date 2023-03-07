@@ -20,7 +20,7 @@ class ResetPassword extends Mailable
      * @return void
      */
 
-    protected $data;
+    public $data;
 
 
     public function __construct($data)
@@ -50,9 +50,7 @@ class ResetPassword extends Mailable
     {
         return new Content(
             view: 'view.emails.reset_password',
-            with: [
-                'data' => $data->pin
-            ]
+
         );
     }
 
