@@ -7,7 +7,9 @@ use App\Http\Controllers\Auth\AuthController;
 
 
 Route::post('/login',[AuthController::class,'login']);
-Route::post('/register',[\App\Http\Controllers\Auth\AuthController::class,'register']);
+Route::post('/register',[Auth\AuthController::class,'register']);
+
+Route::get('/send',[AuthController::class,'sendMail']);
 
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -18,6 +20,6 @@ Route::post('/register',[\App\Http\Controllers\Auth\AuthController::class,'regis
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/users',[AuthController::class,'getAll']);
-    Route::post('update-profile',[AuthController::class,'updateProfile']);
+    Route::post('/update-profile',[AuthController::class,'updateProfile']);
 });
 
