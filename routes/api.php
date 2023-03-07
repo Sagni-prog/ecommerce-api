@@ -7,7 +7,7 @@ use App\Http\Controllers\Auth\AuthController;
 Route::get('/send',[AuthController::class,'sendMail']);
 
 Route::post('/login',[AuthController::class,'login']);
-Route::post('/register',[Auth\AuthController::class,'register']);
+Route::post('/register',[AuthController::class,'register']);
 
 
 
