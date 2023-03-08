@@ -61,9 +61,5 @@ class User extends Authenticatable
     {
         return $this->morphMany(Photo::class, 'photoable');
     }
-    Gate::define('edit-settings', function (User $user) {
-        return $user->isAdmin
-                    ? Response::allow()
-                    : Response::denyWithStatus(404);
-    });
+
 }

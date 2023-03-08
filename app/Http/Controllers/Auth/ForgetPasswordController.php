@@ -140,7 +140,7 @@ catch(\Throwable $th){
 }
 catch(\Throwable $th){
     return response()->json([
-        "status"=>true,
+        "status"=>'fail',
         "message"=>$th->getMessage()
     ],500);
 

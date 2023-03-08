@@ -84,9 +84,9 @@ class AuthController extends Controller
                 "token"=>$user->createtoken("user_token")->plainTextToken
             ] ,200);
         }
-        catch(\Throwable $th){
+        catch(\Exception  $th){
             return response()->json([
-                "status"=>true,
+                "status"=>"fail",
                 "message"=>$th->getMessage()
             ],500);
 
@@ -155,7 +155,7 @@ try{
        }
 
             return $user;
-    }catch(\Exception $e){
+    }catch(\Throwable $e){
         return response()->json([
             'msg' => $e->getMessage()
         ]);
