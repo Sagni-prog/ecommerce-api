@@ -94,15 +94,25 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-
+  try{}catch(\Exception $Y){
+    return response()->json([
+        "status"=>"fail",
+        "message"=>$Y->getMessage()
+    ],500);
+  }
         $request->validate([
               'email' => 'required',
               'password' => 'required'
         ]);
 
 
-        $user = User::where('email',$request->email)->with('photos')->first();
+        $user = User::where('email',$request->email)->with('photos')->get();
+     if(!$user){
 
+            return response()->json([
+                "message" => "no user in is email"
+            ],404);
+     }
         if(!Hash::check($request->password, $user->password)){
             return response()->json([
                 "message" => "Wrong credentials"
@@ -122,12 +132,16 @@ class AuthController extends Controller
 try{
         $user = Auth::user();
 
+
           $isUpdated =  Auth::user()->update([
                 "name" => $request->name,
                 "email" => $request->email
             ]);
 
+
+
             if($request->hasFile('photo')){
+
 
                 $ext = $request->file('photo')->extension();
 
@@ -144,13 +158,27 @@ try{
              $height = $data['height'];
 
 
-          $user->photo()->update([
-                "photo_name" => $filename,
-                "photo_path" => $path,
-                "photo_url" => $image_url,
-                "photo_width" => $width,
-                "photo_height" => $height
-            ]);
+            if(!$user->photos->count()){
+
+                $user->photos()->create([
+                    "photo_name" => $filename,
+                    "photo_path" => $path,
+                    "photo_url" => $image_url,
+                    "width" => $width,
+                    "height" => $height
+                        ]);
+            }
+            else{
+
+                $user->photos()->update([
+                        "photo_name" => $filename,
+                        "photo_path" => $path,
+                        "photo_url" => $image_url,
+                        "width" => $width,
+                        "height" => $height
+                            ]);
+
+                        }
 
        }
 
@@ -159,12 +187,12 @@ try{
         return response()->json([
             'msg' => $e->getMessage()
         ]);
-    }
+       }
      }
 
+     public static function getDimension($path){
 
-    //  public function getAll(){
-    //     $users = User::all();
+        [$width,$height] = getimagesize(Storage::path($path));
 
     //     return response()->json([
     //         "user" => $users
@@ -194,4 +222,4 @@ try{
 
 
 
-
+}

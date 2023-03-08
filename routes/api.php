@@ -17,10 +17,12 @@ Route::post('/pinverify',[ForgetPasswordController::class, 'pinVerify']);
 Route::post('/verify-email',[VerifyUserController::class,'verifyUser']);
 Route::get('/resend',[VerifyUserController::class,'resendToken']);
 
+Route::get('/users',[AuthController::class,'getAll']);
 
 
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/users',[AuthController::class,'getAll']);
+
+Route::middleware(['auth:sanctum'])->group(function () { 
+    
     Route::post('/update-profile',[AuthController::class,'updateProfile']);
 });
 
