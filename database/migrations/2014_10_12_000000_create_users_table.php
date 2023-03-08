@@ -25,7 +25,7 @@ return new class extends Migration
             $table->integer('verification_token')->nullable();
             $table->timestamp('token_created_at')->nullable();
             $table->timestamp('token_expires_at')->nullable();
-            // $table->boolean('isActive')->nullable()->default(false);
+            $table->boolean('isActive')->nullable()->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
