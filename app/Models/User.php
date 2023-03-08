@@ -27,7 +27,8 @@ class User extends Authenticatable
                             'is_super_admin',
                             'verification_token',
                             'token_created_at',
-                            'token_expires_at'
+                            'token_expires_at',
+                            'isActive'
     ];
 
     /**

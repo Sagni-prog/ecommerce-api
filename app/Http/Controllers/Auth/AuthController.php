@@ -5,19 +5,17 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Mail\ResetPassword;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
-// use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Carbon;
 use App\Mail\VerificationMail;
-
+use Session;
+use Crypt;
 class AuthController extends Controller
 {
     // use HasApiTokens, HasFactory,Notifiable;
@@ -44,6 +42,7 @@ class AuthController extends Controller
                     'email'=>$request->email,
                     'password'=>Hash::make($request->password),
                     'verification_token' => $verification_token,
+                    'token_created_at' =>  Carbon::now()
 
                 ]
                 );
@@ -56,16 +55,22 @@ class AuthController extends Controller
                     ];
                    if(!Mail::to($request->email)->send(new VerificationMail($data))){
 
+
                             return response()->json([
                                 'message' =>'not sent'
                             ]);
 
+
                           }else{
+
+                            $minutes = 60;
+
+                         $enc_value = Crypt::encrypt($user->email);
 
 
                            return response()->json([
                             'message' => 'sent'
-                          ],200);
+                          ],200)->withCookie(cookie('user',$enc_value , $minutes));
                           }
                 }
                 else{
@@ -158,21 +163,32 @@ try{
      }
 
 
-     public function getAll(){
-        $users = User::with('photos')->get();
+    //  public function getAll(){
+    //     $users = User::all();
 
-        return response()->json([
-            "user" => $users
-        ]);
-    }
+    //     return response()->json([
+    //         "user" => $users
+    //     ]);
+    // }
 
-    public function sendMail(){
+    // public function sendMail(){
 
-        $data = [
-            "pin" => 123
-        ];
-        Mail::to("sagnialemayehu69@gmail.com")->send(new ResetPassword($data));
-    }
+    //     $data = [
+    //         "pin" => 123
+    //     ];
+    //     Mail::to("sagnialemayehu69@gmail.com")->send(new ResetPassword($data));
+    // }
+
+    // public function testSessin(){
+    //     $minutes = 60;
+
+
+    //     $enc_value = Crypt::encrypt("hello thi is me");
+    //     return response()->json([
+    //         "name" => "mike"
+    //     ])->withCookie(cookie('test-cookie', $enc_value, $minutes));
+    //     // return $response;
+    // }
 }
 
 
