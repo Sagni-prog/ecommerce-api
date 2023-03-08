@@ -22,7 +22,7 @@ class VerifyUserController extends Controller
   public function __construct(Request $request)
     {
         $this->email = Crypt::decrypt($request->Cookie('user'));
-        
+
     }
 
     public function verifyUser(Request $request){
@@ -41,7 +41,7 @@ class VerifyUserController extends Controller
 
                 $now = Carbon::now();
                 $diff = $now->diffInMinutes($token_created_at);
-   
+
               if($diff > 5){
                   $user->update([
                     'token_expires_at' => Carbon::now()
@@ -61,9 +61,9 @@ class VerifyUserController extends Controller
                 }
             }
 
-           
+
         } catch (\Throwable $th) {
-          return response()->json("invalid", 200);
+          return response()->json("invalid", 500);
         }
 
     }
@@ -72,10 +72,10 @@ class VerifyUserController extends Controller
 
     public function resendToken(){
 
-    
+
 
         try {
-         
+
 
             $verification_token = random_int(0000,9999);
 
@@ -84,8 +84,8 @@ class VerifyUserController extends Controller
             ];
 
             if(!Mail::to($this->email)->send(new VerificationMail($data))){
-                    
-                              
+
+
                 return response()->json([
                     'message' =>'not sent'
                 ]);
@@ -115,8 +115,8 @@ class VerifyUserController extends Controller
                       "message" => "resent"
               ]);
         } catch (\Throwable $th) {
-            
+
       }
     }
-  
+
 }

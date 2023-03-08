@@ -21,6 +21,9 @@ Route::get('/resend',[VerifyUserController::class,'resendToken']);
 Route::get('/users',[AuthController::class,'getAll']);
 
 
+Route::get('/all_product',[ProductController::class,'index']);
+
+
 
 Route::middleware(['auth:sanctum'])->group(function () { 
     

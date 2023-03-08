@@ -93,45 +93,60 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
+  try{
 
-        $request->validate([
-              'email' => 'required',
-              'password' => 'required'
-        ]);
+    $loginvaliditor=$request->validate([
+        'email' => 'required',
+        'password' => 'required'
+  ]);
+
+  if(!$loginvaliditor){
+      return response()->json([
+          "status"=>false,
+          "message"=>"valitor error",
+          "error"=>$uservalidator->errors()
+      ],404);
+
+}
+  $user = User::where('email',$request->email)->with('photos')->first();
+
+if(!$user){
+
+      return response()->json([
+          "message" => "no user in is email"
+      ],404);
+}
+  if(!Hash::check($request->password, $user->password)){
+      return response()->json([
+          "message" => "Wrong credentials"
+      ]);
+   }
 
 
-        $user = User::where('email',$request->email)->with('photos')->first();
+   $token = $user->createToken('user_token')->plainTextToken;
+   return response()->json([
+       "token" => $token,
+       "user" => $user
+   ]);
+  }catch(\Exception $E){
+    return response()->json([
+        "status"=>"fail",
+        "message"=>$E->getMessage()
+    ],500);
 
-        if(!$user){
-            return response()->json([
-                'message' => 'user of this credential not found'
-            ]);
-        }
-
-        if(!Hash::check($request->password, $user->password)){
-            return response()->json([
-                "message" => "Wrong credentials"
-            ]);
-         }
-
-
-         $token = $user->createToken('user_token')->plainTextToken;
-         return response()->json([
-             "token" => $token,
-             "user" => $user
-         ]);
+  }
 
     }
 
     public function updateProfile(Request $request){
-try{
-        $user = Auth::user();
+        try{
+            $user = Auth::user();
 
-       
-          $isUpdated =  Auth::user()->update([
-                "name" => $request->name,
-                "email" => $request->email
-            ]);
+        
+            $isUpdated =  Auth::user()->update([
+                    "name" => $request->name,
+                    "email" => $request->email
+                ]);
 
        
 
@@ -145,12 +160,12 @@ try{
 
                 $filename = 'image-' . time() . '.' . $ext;
 
-             $path = $request->file('photo')->storeAs('profile-photo', $filename);
-             $image_url = Storage::url($path);
+                $path = $request->file('photo')->storeAs('profile-photo', $filename);
+                $image_url = Storage::url($path);
 
-             $data = $this->getDimension($path);
-             $width = $data['width'];
-             $height = $data['height'];
+                $data = $this->getDimension($path);
+                $width = $data['width'];
+                $height = $data['height'];
 
 
             if(!$user->photos->count()){
