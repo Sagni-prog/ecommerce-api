@@ -102,6 +102,12 @@ class AuthController extends Controller
 
         $user = User::where('email',$request->email)->with('photos')->first();
 
+        if(!$user){
+            return response()->json([
+                'message' => 'user of this credential not found'
+            ]);
+        }
+
         if(!Hash::check($request->password, $user->password)){
             return response()->json([
                 "message" => "Wrong credentials"

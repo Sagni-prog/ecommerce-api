@@ -21,9 +21,9 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->integer('product_quantity');
             $table->string('product_by_gender');
-            $table->integer('product_discount_percent');
-            $table->date('product_discount_start_date')->nullable();
-            $table->date('product_discount_end_date')->nullable();
+            $table->integer('product_discount_percent')->nullable();
+            $table->timestamp('product_discount_start_date')->nullable();
+            $table->timestamp('product_discount_end_date')->nullable();
             $table->json('features');
             $table->timestamps();
         });
