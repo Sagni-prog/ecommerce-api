@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\VerificationMail;
 use Cookie;
-use Illuminate\Support\Facade\Crypt;
+use Crypt;
 use Illuminate\Support\Carbon;
 
 
@@ -63,7 +63,7 @@ class VerifyUserController extends Controller
 
 
         } catch (\Throwable $th) {
-          return response()->json("invalid", 200);
+          return response()->json("invalid", 500);
         }
 
     }

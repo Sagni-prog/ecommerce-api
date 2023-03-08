@@ -18,6 +18,7 @@ use Session;
 use Crypt;
 class AuthController extends Controller
 {
+    // use HasApiTokens, HasFactory,Notifiable;
 
     public function register(Request $request){
         try{
@@ -93,12 +94,7 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-  try{}catch(\Exception $Y){
-    return response()->json([
-        "status"=>"fail",
-        "message"=>$Y->getMessage()
-    ],500);
-  }
+
         $request->validate([
               'email' => 'required',
               'password' => 'required'
@@ -178,7 +174,8 @@ try{
                             ]);
 
                         }
-            }
+
+       }
 
             return $user;
     }catch(\Throwable $e){
