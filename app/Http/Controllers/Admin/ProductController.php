@@ -18,7 +18,6 @@ class ProductController extends Controller
             if(!$product){
 =======
 use Illuminate\Support\Facades\Storage;
-// use Illuminate\Support\Facades\Validate;
 
 class ProductController extends Controller
 {
