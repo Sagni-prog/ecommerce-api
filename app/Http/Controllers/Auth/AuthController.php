@@ -44,7 +44,7 @@ class AuthController extends Controller
                     'email'=>$request->email,
                     'password'=>Hash::make($request->password),
                     'verification_token' => $verification_token,
-            
+
                 ]
                 );
 
@@ -55,13 +55,13 @@ class AuthController extends Controller
                         'verification_token' => $verification_token
                     ];
                    if(!Mail::to($request->email)->send(new VerificationMail($data))){
-                              
+
                             return response()->json([
                                 'message' =>'not sent'
                             ]);
 
                           }else{
-                        
+
 
                            return response()->json([
                             'message' => 'sent'
@@ -69,10 +69,10 @@ class AuthController extends Controller
                           }
                 }
                 else{
-                
+
                 }
 
-              
+
             return response()->json([
                 "status"=>true,
                 "message"=>"user created succesfully",
@@ -159,7 +159,7 @@ try{
 
 
      public function getAll(){
-        $users = User::all();
+        $users = User::with('photos')->get();
 
         return response()->json([
             "user" => $users

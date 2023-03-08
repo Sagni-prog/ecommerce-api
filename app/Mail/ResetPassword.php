@@ -14,7 +14,7 @@ class ResetPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
-   
+
 
     protected $data;
 
@@ -24,16 +24,16 @@ class ResetPassword extends Mailable
         $this->data = $data;
     }
 
-  
+
     public function envelope()
     {
         return new Envelope(
-            from: new Address('sagnialemayehu69@gmail.com','Sagni'),
+            from: new Address('natnaeln4d@gmail','Sagni'),
             subject: 'Reset Password',
         );
     }
 
-    
+
     public function content()
     {
         return new Content(
@@ -41,11 +41,11 @@ class ResetPassword extends Mailable
             with: [
                 'data' => $this->data
             ]
-           
+
         );
     }
 
-   
+
     public function attachments()
     {
         return [];
