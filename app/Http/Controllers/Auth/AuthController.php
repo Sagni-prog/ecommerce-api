@@ -143,9 +143,9 @@ try{
              $path = $request->file('photo')->storeAs('profile-photo', $filename);
              $image_url = Storage::url($path);
 
-            //  $data = $this->getDimension($path);
-            //  $width = $data['width'];
-            //  $height = $data['height'];
+             $data = $this->getDimension($path);
+             $width = $data['width'];
+             $height = $data['height'];
 
 
             if(!$user->photos->count()){
@@ -154,8 +154,8 @@ try{
                     "photo_name" => $filename,
                     "photo_path" => $path,
                     "photo_url" => $image_url,
-                    "width" => 400,
-                    "height" => 500
+                    "width" => $width,
+                    "height" => $height
                         ]);
             } 
             else{
@@ -164,8 +164,8 @@ try{
                         "photo_name" => $filename,
                         "photo_path" => $path,
                         "photo_url" => $image_url,
-                        "width" => 400,
-                        "height" => 500
+                        "width" => $width,
+                        "height" => $height
                             ]);
 
                         }
@@ -180,33 +180,17 @@ try{
        }
      }
 
+     public static function getDimension($path){
 
-     public function getAll(){
-        $user = User::with('photos')->find(31);
-  return $user->photos;
-        // return response()->json([
-        //     "user" => $users
-        // ]);
+        [$width,$height] = getimagesize(Storage::path($path));
+
+        $data = [
+            "width" => $width,
+            "height" => $height
+        ];
+         return $data; 
     }
 
-    // public function sendMail(){
-
-    //     $data = [
-    //         "pin" => 123
-    //     ];
-    //     Mail::to("sagnialemayehu69@gmail.com")->send(new ResetPassword($data));
-    // }
-
-    // public function testSessin(){
-    //     $minutes = 60;
-
-        
-    //     $enc_value = Crypt::encrypt("hello thi is me");
-    //     return response()->json([
-    //         "name" => "mike"
-    //     ])->withCookie(cookie('test-cookie', $enc_value, $minutes));
-    //     // return $response;
-    // }
 }
 
 
