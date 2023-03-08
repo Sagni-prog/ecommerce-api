@@ -20,8 +20,13 @@ Route::get('/resend',[VerifyUserController::class,'resendToken']);
 
 Route::get('/users',[AuthController::class,'getAll']);
 
+Route::post('/add-products',[ProductController::class,'store']);
+Route::post('/edit-products',[ProductController::class,'edit']);
+
 
 Route::get('/all_product',[ProductController::class,'index']);
+
+
 
 
 
