@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('product_name');
             $table->integer('catagory_id')->unsigned();
-            $table->integer('price');
+            $table->decimal('price');
             $table->text('description')->nullable();
             $table->integer('product_quantity');
             $table->string('product_by_gender');
@@ -25,7 +25,8 @@ return new class extends Migration
             $table->timestamp('product_discount_start_date')->nullable();
             $table->timestamp('product_discount_end_date')->nullable();
             $table->json('features');
-            $table->timestamps();
+            $table->timestamps();   
+            
         });
     }
 
