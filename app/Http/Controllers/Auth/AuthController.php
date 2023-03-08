@@ -122,13 +122,17 @@ class AuthController extends Controller
 try{
         $user = Auth::user();
 
+       
           $isUpdated =  Auth::user()->update([
                 "name" => $request->name,
                 "email" => $request->email
             ]);
 
+       
+
             if($request->hasFile('photo')){
 
+               
                 $ext = $request->file('photo')->extension();
 
                 $image_name = 'image';
@@ -139,18 +143,32 @@ try{
              $path = $request->file('photo')->storeAs('profile-photo', $filename);
              $image_url = Storage::url($path);
 
-             $data = $this->getDimension($path);
-             $width = $data['width'];
-             $height = $data['height'];
+            //  $data = $this->getDimension($path);
+            //  $width = $data['width'];
+            //  $height = $data['height'];
 
 
-          $user->photo()->update([
-                "photo_name" => $filename,
-                "photo_path" => $path,
-                "photo_url" => $image_url,
-                "photo_width" => $width,
-                "photo_height" => $height
-            ]);
+            if(!$user->photos->count()){
+
+                $user->photos()->create([
+                    "photo_name" => $filename,
+                    "photo_path" => $path,
+                    "photo_url" => $image_url,
+                    "width" => 400,
+                    "height" => 500
+                        ]);
+            } 
+            else{
+           
+                $user->photos()->update([
+                        "photo_name" => $filename,
+                        "photo_path" => $path,
+                        "photo_url" => $image_url,
+                        "width" => 400,
+                        "height" => 500
+                            ]);
+
+                        }
 
        }
 
@@ -159,17 +177,17 @@ try{
         return response()->json([
             'msg' => $e->getMessage()
         ]);
-    }
+       }
      }
 
 
-    //  public function getAll(){
-    //     $users = User::all();
-
-    //     return response()->json([
-    //         "user" => $users
-    //     ]);
-    // }
+     public function getAll(){
+        $user = User::with('photos')->find(31);
+  return $user->photos;
+        // return response()->json([
+        //     "user" => $users
+        // ]);
+    }
 
     // public function sendMail(){
 
