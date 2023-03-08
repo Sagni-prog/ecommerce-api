@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\VerifyUserController;
+use App\Http\Controllers\Admin\ProductController;
 
 // Route::get('/send',[AuthController::class,'sendMail']);
 

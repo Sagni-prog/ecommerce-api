@@ -18,7 +18,6 @@ use Session;
 use Crypt;
 class AuthController extends Controller
 {
-    // use HasApiTokens, HasFactory,Notifiable;
 
     public function register(Request $request){
         try{
@@ -169,8 +168,7 @@ try{
                             ]);
 
                         }
-
-       }
+            }
 
             return $user;
     }catch(\Exception $e){
