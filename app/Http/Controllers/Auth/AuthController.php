@@ -108,7 +108,7 @@ class AuthController extends Controller
       ],404);
 
 }
-  $user = User::where('email',$request->email)->with('photos')->first();
+  $user = User::where(['email'=> $request->email,'isActive' => 1])->with('photos')->first();
 
 if(!$user){
 
