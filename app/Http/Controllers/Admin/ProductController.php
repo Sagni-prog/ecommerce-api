@@ -3,13 +3,115 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use \App\Models\Product;
 
 class ProductController extends Controller
 {
+
+    // get all products
+    public function index()
+    {
+        try{
+
+            $product=\App\Models\Product::with('photos')->orderBy('created_at', 'desc')->paginate(3);
+            if(!$product){
+                return response()->json([
+                    'status'=>'fail',
+                    'msg'=>'no record'
+
+                ],500);
+
+            }
+            return response()->json([
+                'status'=>'success',
+                'data'=>$product
+
+            ],200);
+
+
+        }catch(\Exception $E){
+            return response()->json([
+                'status'=>'fail',
+                'msg'=>$E->getMessage()
+            ]);
+        }
+    }
+    // get product by name
+    public function getbyname(Request $request)
+    {
+
+        try{
+            $para=Validator::make($request->all(),[
+                'product_name'=>['required', 'string']
+            ]);
+
+
+                $product=\App\Models\Product::where(['product_name'=>$request->product_name])->with('photos')->first();
+                if(!$product){
+                    return response()->json([
+                        'status'=>false,
+                        'data'=>"no record"
+                    ],404);
+
+                }
+
+                return response()->json([
+                    'status'=>true,
+                    'data'=>$product
+
+
+                ],200);
+
+
+
+
+
+        }catch(\Exception $E){
+            return response()->json([
+                'statua'=>'fail',
+                'msg'=>$E->getMessage()
+            ]);
+        }
+    }
+    //get product by catagory
+    public function getbycatagory(Request $request)
+    {
+
+        try{
+
+
+                $catagory=\App\Models\Catagory::where(['catagory_name'=>$request->catagory_name])->with('products.photos')->orderBy('created_at', 'desc')->paginate(3);
+
+                if(!$catagory){
+                    return response()->json([
+                        'status'=>false,
+                        'data'=>"no record"
+                    ],404);
+
+                }
+
+                return response()->json([
+                    'status'=>true,
+                    'data'=>$catagory
+
+
+                ],200);
+
+
+
+
+
+        }catch(\Exception $E){
+            return response()->json([
+                'status'=>'fail',
+                'msg'=>$E->getMessage()
+            ]);
+        }
+    }
+
     public function store(Request $request){
 
         try {
@@ -24,14 +126,19 @@ class ProductController extends Controller
                             'features' => ['required'],
                             'photo' => ['nullable','image','mimes:jpeg,jpg,png,gif']
             ]);
-            
-    
+
+
             if(!$product_validator){
+
                 return response()->json([
-                    'error' => $errors()
-                ]);
+                    'status'=>'fail',
+                    'msg'=>'no record'
+
+                ],500);
+
             }
-            
+
+
            $product = Product::create([
                             'catagory_id' => $request->catagory_id,
                             'product_name' => $request->product_name,
@@ -40,23 +147,23 @@ class ProductController extends Controller
                             'description' => $request->description,
                             'features' => $request->features,
                             'product_by_gender' => $request->product_by_gender,
-           ]);  
-           
-           
+           ]);
+
+
           if($request->hasFile('photo')){
-          
+
               $extension = $request->file('photo')->extension();
               $name = "product";
               $filename = $name . "-" . time() ."." .$extension;
-              
+
               $path = $request->file('photo')->storeAs('product-photo',$filename);
-              
+
               $photo_url = Storage::url($path);
-              
+
               $data = $this->getDimension($path);
                 $width = $data['width'];
                 $height = $data['height'];
-              
+
               $product->photos()->create([
                             'photo_name' => $name,
                             'photo_path' => $path,
@@ -64,27 +171,35 @@ class ProductController extends Controller
                             'height' => $width,
                             'width' => $height
               ]);
-              
+
               return response()->json([
                       'prducts' => $product
               ],200);
-              
-              
+
+
           }
-            
+
         } catch (\Throwable $th) {
 
-            return response()->json([
 
-                "message"=>$th->getMessage()
+            return response()->json([
+                'status'=>'success',
+                'data'=>$product
+
+            ],200);
+
+
+        }catch(\Exception $E){
+            return response()->json([
+                'status'=>'fail',
+                'msg'=>$E->getMessage()
             ]);
         }
-
     }
-    
+
     public function edit(Request $request){
-    
-       
+
+
             $product_validator=$request->validate([
                             'catagory_id' =>['required','integer'],
                             'product_name' => ['required', 'string', 'max:255'],
@@ -96,16 +211,16 @@ class ProductController extends Controller
                             'features' => ['required'],
                             'photo' => ['nullable','image','mimes:jpeg,jpg,png,gif']
             ]);
-            
-    
+
+
             if(!$product_validator){
                 return response()->json([
-                    'error' => $errors()
+                    'error' => ''
                 ]);
             }
-            
+
       try {
-      
+
           $product = Product::where('id',$request->id)->first();
              $result = $product->update([
                             'catagory_id' => $request->catagory_id,
@@ -115,23 +230,23 @@ class ProductController extends Controller
                             'description' => $request->description,
                             'features' => $request->features,
                             'product_by_gender' => $request->product_by_gender,
-           ]);  
-           
-           
+           ]);
+
+
           if($request->hasFile('photo')){
-          
+
               $extension = $request->file('photo')->extension();
               $name = "product";
               $filename = $name . "-" . time() ."." .$extension;
-              
+
               $path = $request->file('photo')->storeAs('product-photo',$filename);
-              
+
               $photo_url = Storage::url($path);
-              
+
               $data = $this->getDimension($path);
                 $width = $data['width'];
                 $height = $data['height'];
-              
+
               $product->photos()->update([
                             'photo_name' => $name,
                             'photo_path' => $path,
@@ -139,14 +254,14 @@ class ProductController extends Controller
                             'height' => $width,
                             'width' => $height
               ]);
-              
+
               return response()->json([
                       'status' => $result
               ],200);
-              
-              
+
+
           }
-            
+
         } catch (\Throwable $th) {
 
             return response()->json([
@@ -155,26 +270,17 @@ class ProductController extends Controller
             ]);
         }
     }
-    
+
     public static function getDimension($path){
-    
-    try {
-        
-            [$width,$height] = getimagesize(Storage::path($path));
-    
-            $data = [
-                "width" => $width,
-                "height" => $height
-            ];
-             return $data; 
-                       } catch (\Throwable $th) {
-                        return response()->json([
 
-                            "message"=>$th->getMessage()
-                        ]);
-                      }
+        [$width,$height] = getimagesize(Storage::path($path));
 
-           }
+        $data = [
+            "width" => $width,
+            "height" => $height
+        ];
+         return $data;
     }
-    
 
+
+}

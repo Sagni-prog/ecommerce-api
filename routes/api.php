@@ -33,8 +33,8 @@ Route::post('/getByCatagory',[ProductController::class,'getbycatagory']);
 
 
 
-Route::middleware(['auth:sanctum'])->group(function () { 
-    
+Route::middleware(['auth:sanctum'])->group(function () {
+
     Route::post('/update-profile',[AuthController::class,'updateProfile']);
 });
 
