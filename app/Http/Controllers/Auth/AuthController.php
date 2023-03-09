@@ -103,7 +103,7 @@ class AuthController extends Controller
   if(!$loginvaliditor){
       return response()->json([
           "status"=>false,
-          "message"=>"valitor error",
+          "message"=>"valitor error"
 
       ],404);
 
