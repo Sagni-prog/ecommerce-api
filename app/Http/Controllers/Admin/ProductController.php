@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use \App\Models\Product;
+use \App\Models\Catagory;
 use Illuminate\Support\Carbon;
 
 class ProductController extends Controller
@@ -102,9 +103,6 @@ class ProductController extends Controller
                 ],200);
 
 
-
-
-
         }catch(\Exception $E){
             return response()->json([
                 'status'=>'fail',
@@ -177,7 +175,6 @@ class ProductController extends Controller
                       'prducts' => $product
               ],200);
 
-
           }
 
         }catch(\Exception $E){
@@ -202,10 +199,6 @@ class ProductController extends Controller
                             'features' => ['required'],
                             'photo' => ['nullable','image','mimes:jpeg,jpg,png,gif']
             ]);
-
-
-
-
 
           $product = Product::where('id',$request->id)->with('photos')->first();
 
