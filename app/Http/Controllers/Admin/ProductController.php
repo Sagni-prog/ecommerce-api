@@ -259,7 +259,6 @@ class ProductController extends Controller
                       'status' => $result
               ],200);
 
-
           }
 
         } catch (\Throwable $th) {
@@ -281,6 +280,5 @@ class ProductController extends Controller
         ];
          return $data;
     }
-
 
 }
