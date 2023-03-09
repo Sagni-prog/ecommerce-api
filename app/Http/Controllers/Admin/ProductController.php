@@ -246,7 +246,6 @@ class ProductController extends Controller
          ],200);
 
 
-
           }
           return response()->json([
             'status' => $product
@@ -293,6 +292,7 @@ class ProductController extends Controller
         }
 
     }
+    
 
     public static function getDimension($path){
 
@@ -304,6 +304,5 @@ class ProductController extends Controller
         ];
          return $data;
     }
-
 
 }
