@@ -28,6 +28,7 @@ Route::post('/edit-products',[ProductController::class,'edit']);
 Route::get('/allproduct',[ProductController::class,'index']);
 Route::post('/getByName',[ProductController::class,'getbyname']);
 Route::post('/getByCatagory',[ProductController::class,'getbycatagory']);
+Route::delete('/deleteproduct/{id}',[ProductController::class,'destoryproduct']);
 
 
 

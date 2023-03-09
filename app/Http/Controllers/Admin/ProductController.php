@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         try{
 
-            $product=\App\Models\Product::with('photos')->orderBy('created_at', 'desc')->paginate(3);
+            $product=\App\Models\Product::with('photos')->orderBy('created_at', 'desc')->paginate(10);
             if(!$product){
                 return response()->json([
                     'status'=>'fail',
@@ -188,9 +188,9 @@ class ProductController extends Controller
     }
 
     public function edit(Request $request){
+        try {
 
-
-            $product_validator=$request->validate([
+           $request->validate([
                             'catagory_id' =>['required','integer'],
                             'product_name' => ['required', 'string', 'max:255'],
                             'product_quantity' => ['required','integer'],
@@ -203,15 +203,11 @@ class ProductController extends Controller
             ]);
 
 
-            if(!$product_validator){
-                return response()->json([
-                    'error' => ''
-                ]);
-            }
 
-      try {
 
-          $product = Product::where('id',$request->id)->first();
+
+          $product = Product::where('id',$request->id)->with('photos')->first();
+
              $result = $product->update([
                             'catagory_id' => $request->catagory_id,
                             'product_name' => $request->product_name,
@@ -245,19 +241,56 @@ class ProductController extends Controller
                             'width' => $height
               ]);
 
-              return response()->json([
-                      'status' => $result
-              ],200);
+        return response()->json([
+            'status' => $result
+         ],200);
+
 
           }
+          return response()->json([
+            'status' => $product
+    ],200);
 
-        } catch (\Throwable $th) {
+
+        } catch (\Exception $th) {
 
             return response()->json([
-
+                'status'=>'fail',
                 "message"=>$th->getMessage()
-            ]);
+            ],500);
         }
+    }
+    public function destoryproduct($id){
+        try{
+
+            $product=Product::find($id);
+            if(!$product){
+                return response()->json([
+                    'status'=>'fail',
+                    "message"=>'no record'
+                ],500);
+
+            }
+            $result=$product->delete();
+            if($result){
+                return response()->json([
+                    'status' => $result
+            ],200);
+            }
+            return response()->json([
+                'status' => 'fail'
+        ],500);
+
+
+
+        }catch (\Exception $th) {
+
+            return response()->json([
+                'status'=>'fail',
+                "message"=>$th->getMessage()
+            ],500);
+        }
+
     }
     
 
