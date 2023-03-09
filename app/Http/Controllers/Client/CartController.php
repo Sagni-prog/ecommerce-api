@@ -20,21 +20,9 @@ public function store(Request $request, $id){
            
      $product = Product::with('carts')->find($id);
      
-     $carts = Cart::with('products')->where('user_id',Auth::user()->id)->get();
+    //  $carts = Cart::with('products')->where('user_id',Auth::user()->id)->get();
      
-     foreach($carts as $cart){
-        foreach($cart->products as $product){
-  
-          if($product->find(4)){
-               
-          }
-        }
-     }
-     
-    
-   
-     
-              
+          
         if(!$product){
         return response()->json([
                  'message' => 'product not found'
@@ -61,11 +49,7 @@ public function store(Request $request, $id){
         return response()->json([
 
             "message"=>$th->getMessage()
-        ]);
-    }
-  
-  
-    
-      }
-    
+            ]);
+         }
+     }
 }
