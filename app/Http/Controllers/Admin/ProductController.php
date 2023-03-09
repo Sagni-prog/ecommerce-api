@@ -134,7 +134,7 @@ class ProductController extends Controller
                     'status'=>'fail',
                     'msg'=>'no record'
 
-                ],500);
+                ],404);
 
             }
 
@@ -178,16 +178,6 @@ class ProductController extends Controller
 
 
           }
-
-        } catch (\Throwable $th) {
-
-
-            return response()->json([
-                'status'=>'success',
-                'data'=>$product
-
-            ],200);
-
 
         }catch(\Exception $E){
             return response()->json([
