@@ -42,7 +42,7 @@ class AuthController extends Controller
                     'password'=>Hash::make($request->password),
                     'verification_token' => $verification_token,
                     'token_created_at' =>  Carbon::now()
-            
+
                 ]
                 );
 
@@ -53,15 +53,15 @@ class AuthController extends Controller
                         'verification_token' => $verification_token
                     ];
                    if(!Mail::to($request->email)->send(new VerificationMail($data))){
-                    
-                              
+
+
                             return response()->json([
                                 'message' =>'not sent'
                             ]);
 
 
                           }else{
-                           
+
                             $minutes = 60;
 
                          $enc_value = Crypt::encrypt($user->email);
@@ -73,10 +73,10 @@ class AuthController extends Controller
                           }
                 }
                 else{
-                
+
                 }
 
-              
+
             return response()->json([
                 "status"=>true,
                 "message"=>"user created succesfully",
@@ -104,7 +104,7 @@ class AuthController extends Controller
       return response()->json([
           "status"=>false,
           "message"=>"valitor error",
-          "error"=>$uservalidator->errors()
+
       ],404);
 
 }
@@ -142,17 +142,17 @@ if(!$user){
         try{
             $user = Auth::user();
 
-        
+
             $isUpdated =  Auth::user()->update([
                     "name" => $request->name,
                     "email" => $request->email
                 ]);
 
-       
+
 
             if($request->hasFile('photo')){
 
-               
+
                 $ext = $request->file('photo')->extension();
 
                 $image_name = 'image';
@@ -177,9 +177,9 @@ if(!$user){
                     "width" => $width,
                     "height" => $height
                         ]);
-            } 
+            }
             else{
-           
+
                 $user->photos()->update([
                         "photo_name" => $filename,
                         "photo_path" => $path,
@@ -207,7 +207,7 @@ if(!$user){
             "width" => $width,
             "height" => $height
         ];
-         return $data; 
+         return $data;
     }
 
 }
