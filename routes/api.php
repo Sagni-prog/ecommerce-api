@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\VerifyUserController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Client\CartController;
 
 // Route::get('/send',[AuthController::class,'sendMail']);
 
@@ -33,8 +34,11 @@ Route::post('/getByCatagory',[ProductController::class,'getbycatagory']);
 
 
 
-Route::middleware(['auth:sanctum'])->group(function () {
 
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    
     Route::post('/update-profile',[AuthController::class,'updateProfile']);
+    Route::post('/carts/product/{id}',[CartController::class,'store']);
 });
 
