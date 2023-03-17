@@ -17,7 +17,9 @@ class ProductController extends Controller
     {
         try{
 
-            $product=\App\Models\Product::with('photos')->orderBy('created_at', 'desc')->paginate(10);
+            $product=\App\Models\Product::with('photos')
+                                     ->orderBy('created_at', 'desc')
+                                     ->paginate(10);
             if(!$product){
                 return response()->json([
                     'status'=>'fail',
@@ -65,10 +67,6 @@ class ProductController extends Controller
 
 
                 ],200);
-
-
-
-
 
         }catch(\Exception $E){
             return response()->json([

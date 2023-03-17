@@ -102,7 +102,7 @@ class AuthController extends Controller
 
   if(!$loginvaliditor){
       return response()->json([
-          "status"=>false,
+          "status"=>"fail",
           "message"=>"valitor error",
 
       ],404);
@@ -113,11 +113,13 @@ class AuthController extends Controller
 if(!$user){
 
       return response()->json([
+          "status" => "fail",
           "message" => "no user in is email"
       ],404);
 }
   if(!Hash::check($request->password, $user->password)){
       return response()->json([
+          "status" => "fail",
           "message" => "Wrong credentials"
       ]);
    }
@@ -125,9 +127,10 @@ if(!$user){
 
    $token = $user->createToken('user_token')->plainTextToken;
    return response()->json([
-       "token" => $token,
-       "user" => $user
-   ]);
+               "status" => "success",
+               "token" => $token,
+               "user" => $user
+   ],200);
   }catch(\Exception $E){
     return response()->json([
         "status"=>"fail",
@@ -142,7 +145,6 @@ if(!$user){
         try{
             $user = Auth::user();
 
-
             $isUpdated =  Auth::user()->update([
                     "name" => $request->name,
                     "email" => $request->email
@@ -152,14 +154,9 @@ if(!$user){
 
             if($request->hasFile('photo')){
 
-
                 $ext = $request->file('photo')->extension();
-
                 $image_name = 'image';
-
-
                 $filename = 'image-' . time() . '.' . $ext;
-
                 $path = $request->file('photo')->storeAs('profile-photo', $filename);
                 $image_url = Storage::url($path);
 

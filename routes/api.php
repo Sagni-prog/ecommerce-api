@@ -31,6 +31,9 @@ Route::post('/getByCatagory',[ProductController::class,'getbycatagory']);
 Route::delete('/deleteproduct/{id}',[ProductController::class,'destoryproduct']);
 
 
+Route::get('/carts',[CartController::class,'cu']);
+
+
 
 
 
