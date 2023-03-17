@@ -26,7 +26,7 @@ catagories fields name
 
 #
 
-order_product
+order_product fields
    <li>order_id</li>
    <li>product_id</li>
    <li>quantity </li> 
