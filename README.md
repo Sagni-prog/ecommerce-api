@@ -1,5 +1,5 @@
 #
-products
+products field name
 <li>Product_name</li>
 <li>cataory_id</li>
 <li>product_by_gender</li>
@@ -16,7 +16,7 @@ products
 
 #
 
-catagories
+catagories fields name
    <li>catagories_name</li>
    <li>catagories_id</li>
 
