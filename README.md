@@ -6,7 +6,7 @@
 - Shoes
 - Jackets/Clothes
 - Accessories
-- Blog 
+- Blog  
 - Contact 
 
 - Search Button
@@ -31,5 +31,8 @@
    
    
    
+   
+
+
 
 
