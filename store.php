@@ -63,16 +63,6 @@ Route::post('/place-order',function(Request $request){
 
                 $carts = App\Models\Cart::with('products')->where('user_id',$request->user_id)->get();
 
-                //   return $carts;
-
-                        // foreach($carts as $cart){
-                        //     $order->orderProducts()->create([
-                        //             'quantity' => $request->quantity,
-                        //             'product_id' => $cart->products->id
-                        //         ]);
-                        // }
-
-
                 foreach($carts as $cart){
 
                         $orderProduct = $order->orderProducts()->create([

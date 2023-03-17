@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\VerifyUserController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
+use App\Http\Controllers\Admin\OrderController;
 
 // Route::get('/send',[AuthController::class,'sendMail']);
 
@@ -33,6 +34,10 @@ Route::delete('/deleteproduct/{id}',[ProductController::class,'destoryproduct'])
 
 
 Route::post('/checkout',[CheckoutController::class,'create']);
+
+Route::get('/orders',[OrderController::class,'index']);
+Route::get('/order/{id}',[OrderController::class,'getOrder']);
+Route::patch('/order/{id}',[OrderController::class,'edit']);
 
 
 Route::middleware(['auth:sanctum'])->group(function () {

@@ -21,8 +21,7 @@ class Product extends Model
                             'product_discount_start_date',
                             'product_discount_end_date'
 
-
-        ];
+           ];
 
     protected $casts = [
              'features' => 'array'
