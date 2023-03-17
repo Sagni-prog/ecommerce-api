@@ -32,7 +32,7 @@ order_product fields name
    <li>quantity </li> 
 
 #
-order fields
+order fields name
    <li>user_id</li>
    <li>billing_email</li>
    <li>billing_name</li>
