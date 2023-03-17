@@ -26,9 +26,8 @@
 - terms and conditions
 
 
-
-
-
+   
+   
    
    
    
