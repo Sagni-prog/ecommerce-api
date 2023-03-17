@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\VerifyUserController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Client\CartController;
+use App\Http\Controllers\Client\CheckoutController;
 
 // Route::get('/send',[AuthController::class,'sendMail']);
 
@@ -31,13 +32,7 @@ Route::post('/getByCatagory',[ProductController::class,'getbycatagory']);
 Route::delete('/deleteproduct/{id}',[ProductController::class,'destoryproduct']);
 
 
-Route::get('/carts',[CartController::class,'cu']);
-
-
-
-
-
-
+Route::post('/checkout',[CheckoutController::class,'create']);
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
