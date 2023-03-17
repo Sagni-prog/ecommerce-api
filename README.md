@@ -13,7 +13,7 @@ products
 <li>product_discount_end_date</li>
 <li>features</li>
 
-#
+
 #
 
 catagories
@@ -21,12 +21,6 @@ catagories
    <li>catagories_id</li>
 
 
-#
- 
- sub_catagory
- <li>sub_catagory_id</li>
- <li>sub_catagory_name</li>
- <li>catagory_id</li>
 
 
 
