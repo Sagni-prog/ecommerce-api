@@ -39,5 +39,13 @@ class CheckoutController extends Controller
                 $product = Product::find($cart['product_id']);
                 $product->orderProducts()->attach($orderProduct);
          }
+           
+           $ordered = Order::with('orderProducts.products')->find($order->id);
+          
+         return response()->json([
+              "status" => "success",
+             "data" => $ordered
+         ], 201);
      }
 }
+
