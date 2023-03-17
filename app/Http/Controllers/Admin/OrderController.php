@@ -40,8 +40,19 @@ class OrderController extends Controller
     
     public function edit($id){
         $order = Order::with('orderProducts.products','user')
-                       ->where('id',$id)        
+                       ->where('id',$id)    
                        ->get();
+                       
+          if(!$order->billing_payment_status)  {
+          }           
+                
+       $isUpdated = $order->update(['billing_payment_shipment_status' => true]);
+       if($isUpdated){
+          return response()->json([
+              "status" => "seccess",
+              "message" => "You have successfully updated"
+          ]);
+       }
     }
 }
 
