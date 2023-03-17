@@ -22,5 +22,5 @@
 - order confirmation page
 - login and signup
 - policy and privacy
-- terms and conditions
+- terms and conditions 
    
