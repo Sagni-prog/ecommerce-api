@@ -18,7 +18,7 @@ class ProductController extends Controller
     {
         try{
 
-            $product=\App\Models\Product::with('photos')->orderBy('created_at', 'desc')->paginate(10);
+            $product=Product::with('photos')->orderBy('created_at', 'desc')->paginate(10);
             if(!$product){
                 return response()->json([
                     'status'=>'fail',
@@ -51,7 +51,7 @@ class ProductController extends Controller
             ]);
 
 
-                $product=\App\Models\Product::where(['product_name'=>$request->product_name])->with('photos')->first();
+                $product=Product::where(['product_name'=>$request->product_name])->with('photos')->first();
                 if(!$product){
                     return response()->json([
                         'status'=>false,
@@ -85,7 +85,7 @@ class ProductController extends Controller
         try{
 
 
-                $catagory=\App\Models\Catagory::where(['catagory_name'=>$request->catagory_name])->with('products.photos')->orderBy('created_at', 'desc')->paginate(3);
+                $catagory=Catagory::where(['catagory_name'=>$request->catagory_name])->with('products.photos')->orderBy('created_at', 'desc')->paginate(3);
 
                 if(!$catagory){
                     return response()->json([
@@ -200,7 +200,7 @@ class ProductController extends Controller
                             'photo' => ['nullable','image','mimes:jpeg,jpg,png,gif']
             ]);
 
-          $product = Product::where('id',$request->id)->with('photos')->first();
+          $product = Post::where('id',$request->id)->with('photos')->first();
 
              $result = $product->update([
                             'catagory_id' => $request->catagory_id,

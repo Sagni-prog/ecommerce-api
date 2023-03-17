@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\VerifyUserController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Client\CartController;
 
 // Route::get('/send',[AuthController::class,'sendMail']);
@@ -32,13 +33,16 @@ Route::delete('/deleteproduct/{id}',[ProductController::class,'destoryproduct'])
 
 
 
-
+Route::post('/blogpost',[BlogController::class,'store']);
+Route::get('/blogs',[BlogController::class,'index']);
+Route::post('/blogs/{id}',[BlogController::class,'edit']);
+Route::delete('/blogs/{id}',[BlogController::class,'destorypost']);
 
 
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    
+
     Route::post('/update-profile',[AuthController::class,'updateProfile']);
     Route::post('/carts/product/{id}',[CartController::class,'store']);
 });
