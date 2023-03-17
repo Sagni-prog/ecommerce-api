@@ -7,15 +7,15 @@
 - Jackets/Clothes
 - Accessories
 - Blog 
-- Contact f
-
+- Contact 
+ 
 - Search Button
 - Cart Button
 - Login/Signup Button
 
 # Single pages
 
-
+ 
 - Product detail page with add to cart button
 - Cart page
 - Checkout page
