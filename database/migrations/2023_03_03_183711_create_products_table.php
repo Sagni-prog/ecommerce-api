@@ -22,11 +22,12 @@ return new class extends Migration
             $table->integer('product_quantity');
             $table->string('product_by_gender');
             $table->integer('product_discount_percent')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamp('product_discount_start_date')->nullable();
             $table->timestamp('product_discount_end_date')->nullable();
             $table->json('features');
-            $table->timestamps();   
-            
+            $table->timestamps();
+
         });
     }
 

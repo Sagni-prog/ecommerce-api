@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use \App\Models\Product;
 use \App\Models\Catagory;
+use Illuminate\Support\Carbon;
 
 class ProductController extends Controller
 {
@@ -254,23 +255,23 @@ class ProductController extends Controller
     public function destoryproduct($id){
         try{
 
-            $product=Product::find($id);
-            if(!$product){
-                return response()->json([
-                    'status'=>'fail',
-                    "message"=>'no record'
-                ],500);
+            $product=Product::where('id',$id)->first();
+            $now=Carbon::now();
 
-            }
-            $result=$product->delete();
-            if($result){
+            $res=$product->update(['deleted_at'=>$now]);
+            if($res){
+                $product->delete();
                 return response()->json([
-                    'status' => $result
-            ],200);
+                    'status'=>true,
+                    'msg'=>'deleted sucessfully'
+                ]);
             }
+
             return response()->json([
-                'status' => 'fail'
-        ],500);
+                'status'=>'fail',
+                "message"=>'no record'
+            ],500);
+
 
 
 
@@ -283,7 +284,7 @@ class ProductController extends Controller
         }
 
     }
-    
+
 
     public static function getDimension($path){
 

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 class Product extends Model
 {
     use HasFactory;
@@ -19,7 +19,8 @@ class Product extends Model
                             'product_by_gender',
                             'product_discount_percent',
                             'product_discount_start_date',
-                            'product_discount_end_date'
+                            'product_discount_end_date',
+                            'deleted_at'
 
            ];
 
