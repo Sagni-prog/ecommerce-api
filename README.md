@@ -7,7 +7,7 @@
 - Jackets/Clothes
 - Accessories
 - Blog 
-- Contact 
+- Contact f
 
 - Search Button
 - Cart Button
