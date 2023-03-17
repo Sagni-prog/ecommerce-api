@@ -14,15 +14,12 @@ class CartController extends Controller
 
 public function store(Request $request, $id){
 
-    try {
+  try {
      
-       
-           
      $product = Product::with('carts')->find($id);
      
     //  $carts = Cart::with('products')->where('user_id',Auth::user()->id)->get();
-     
-          
+        
         if(!$product){
         return response()->json([
                  'message' => 'product not found'
@@ -34,7 +31,6 @@ public function store(Request $request, $id){
            ],404);
            
         }
-        
         
             $carts = $product->carts()->create([
                 'user_id' => Auth::user()->id,

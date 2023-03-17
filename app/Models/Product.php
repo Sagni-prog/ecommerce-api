@@ -22,8 +22,7 @@ class Product extends Model
                             'product_discount_end_date',
                             'deleted_at'
 
-
-        ];
+           ];
 
     protected $casts = [
              'features' => 'array'

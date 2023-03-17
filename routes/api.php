@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\VerifyUserController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Client\CartController;
+use App\Http\Controllers\Client\CheckoutController;
+use App\Http\Controllers\Admin\OrderController;
 
 // Route::get('/send',[AuthController::class,'sendMail']);
 
@@ -32,13 +34,14 @@ Route::post('/getByCatagory',[ProductController::class,'getbycatagory']);
 Route::delete('/deleteproduct/{id}',[ProductController::class,'destoryproduct']);
 
 
+Route::post('/checkout',[CheckoutController::class,'create']);
 
 Route::post('/blogpost',[BlogController::class,'store']);
 Route::get('/blogs',[BlogController::class,'index']);
 Route::post('/blogs/{id}',[BlogController::class,'edit']);
-Route::delete('/blogs/{id}',[BlogController::class,'destorypost']);
-
-
+Route::delete('/blogs/{id}',[BlogController::class,'destorypost']);Route::get('/orders',[OrderController::class,'index']);
+Route::get('/order/{id}',[OrderController::class,'getOrder']);
+Route::patch('/order/{id}',[OrderController::class,'edit']);
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
