@@ -26,12 +26,10 @@
 - terms and conditions
 
 
-
-
-
-
    
    
    
+   
+
 
 
