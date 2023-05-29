@@ -1,0 +1,53 @@
+.ImgCont {
+  max-width: 40rem;
+  height: 20rem;
+  overflow: hidden;
+
+  position: relative;
+}
+
+.Btn {
+  all: unset;
+  position: absolute;
+  bottom: 3rem;
+  right: 4rem;
+  border-radius: 0.2rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 1rem 3.2rem;
+  color: #333333;
+  cursor: pointer;
+  z-index: 99;
+
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  transition: 0.3s all ease-in-out;
+}
+
+.Btn:hover {
+  background-color: #ff3368;
+  color: #fff;
+  transition: 0.3s all ease-in-out;
+}
+
+.Btn:hover.Img {
+  transform: scale(1.3);
+  transition: 0.5s all ease-in-out;
+}
+
+.Img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s all ease-in-out;
+}
+
+.Img:hover {
+  transform: scale(1.3);
+  transition: 0.5s all ease-in-out;
+}
+
+@media (max-width: 800px) {
+  .ImgCont {
+    max-width: 100%;
+  }
+}

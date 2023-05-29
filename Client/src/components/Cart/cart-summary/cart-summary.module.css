@@ -1,0 +1,47 @@
+.CartSummary {
+  flex-basis: 30%;
+  background-color: var(--white);
+  color: black;
+}
+.CartSummaryRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.4rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.08rem;
+  text-transform: capitalize;
+  border: solid thin var(--grayLightBorder);
+  border-radius: 0.02rem;
+}
+.CartSummaryRow .SummaryName {
+  font-weight: 500;
+  text-transform: capitalize;
+  letter-spacing: 0.04rem;
+}
+.CartSummaryRow .SummaryValue {
+  text-align: right;
+  line-height: 1.6em;
+}
+.CartSummaryRow .SummaryValueTotal {
+  text-align: right;
+  line-height: 1.4em;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.CartSummary .BtnCart {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 4%;
+  border-radius: 0.4rem;
+  background-color: var(--mainColorBold);
+  color: var(--white);
+  font-size: 1.4rem;
+  letter-spacing: 0.06rem;
+  text-transform: uppercase;
+}
+@media (max-width: 880px) {
+  .CartSummary {
+    width: 95%;
+    margin: 2rem auto;
+  }
+}

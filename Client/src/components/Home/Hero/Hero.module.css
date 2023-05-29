@@ -1,0 +1,85 @@
+.Hero {
+  font-family: "Poppins", sans-serif;
+
+  background-color: #ecfdff;
+  padding: 12rem 12rem;
+  display: flex;
+}
+
+.HeroTitle {
+  font-size: 6.6rem;
+  font-weight: 700;
+  margin-bottom: 3.5rem;
+  line-height: 7.2rem;
+}
+
+.HeroDescription {
+  color: #212529;
+  font-size: 1.5rem;
+  line-height: 1.8;
+  margin-bottom: 7rem;
+  padding-right: 8rem;
+}
+
+.HeroButton {
+  all: unset;
+  border-radius: 0.5rem;
+  background-color: #ff3368;
+  background-size: auto;
+  background-image: linear-gradient(
+    16deg,
+    #ff005a 0%,
+    #ff5d2d 64%,
+    #ffba00 100%
+  );
+  cursor: pointer;
+
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: #fff;
+  padding: 1.2rem 3.2rem;
+}
+
+.HeroImage {
+  display: block;
+  width: 100%;
+}
+
+/* Mobile */
+@media screen and (max-width: 800px) {
+  .Hero {
+    flex-direction: column;
+    padding: 12rem 2rem;
+    gap: 6rem;
+  }
+
+  .HeroContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .HeroTitle {
+    text-align: center;
+    font-size: 3rem;
+    line-height: 4.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .HeroDescription {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    padding-right: 0;
+    width: 70%;
+  }
+
+  .HeroButton {
+  }
+}

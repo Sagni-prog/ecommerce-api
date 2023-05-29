@@ -1,0 +1,62 @@
+.Progress {
+  border: solid thin var(--grayLightBorder);
+  width: 90%;
+  margin: 2rem auto 0rem;
+  border-radius: 0.4rem;
+}
+
+.ShipingProgress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5% auto 0rem;
+}
+.ProgressNode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.6rem;
+  aspect-ratio: 1/1;
+  font-size: 1.6rem;
+  border: solid var(--whiteDim);
+  border-radius: 50%;
+}
+.ProgressNodeActive {
+  background-color: var(--mainColorBold);
+  border: solid thin var(--mainColorBold);
+  color: var(--white);
+}
+.ProgressBar {
+  height: 0.3rem;
+  flex-basis: 30%;
+  background-color: var(--whiteDim);
+}
+.ProgressBarActive {
+  background-color: var(--mainColorBold);
+}
+.ShipingProgressDescription {
+  padding: 1%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 85%;
+  margin: 0rem auto 1rem;
+}
+.ProgressNodeDesc {
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  letter-spacing: 0.04rem;
+  font-weight: 500;
+}
+.ProgressNodeDescActive {
+  color: black;
+}
+
+@media (max-width: 660px) {
+  .ShipingProgressDescription {
+    width: 100%;
+  }
+  .ShipingProgress {
+    width: 100%;
+  }
+}

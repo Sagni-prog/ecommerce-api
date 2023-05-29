@@ -1,0 +1,207 @@
+.other {
+  height: 50vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+.Footer {
+  background-color: #111111;
+}
+
+.FooterCon {
+  padding: 5% 4% 1%;
+  display: flex;
+  justify-content: space-around;
+  gap: 0.4rem;
+  font-size: 1.3rem;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+  letter-spacing: 0.04rem;
+  background-color: #000000;
+  background-color: #111111;
+}
+.FooterPart {
+  flex-basis: 17%;
+}
+.FooterPartContactInfo,
+.FooterPartNewsletter {
+  flex-basis: 30%;
+}
+
+.FooterPartHeader {
+  margin-bottom: 3rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+  -webkit-transition: 0.5s;
+  color: var(--white);
+  transition: 0.5s;
+}
+.FooterPartHeaderName {
+  font-size: 3.8rem;
+  font-weight: bold;
+  color: var(--mainColor);
+}
+
+.FooterPartHeaderSub {
+  color: var(--whiteDim);
+  margin-bottom: 3rem;
+  font-size: 1.4rem;
+  transition: 0.5s;
+  line-height: 2.8rem;
+}
+.ContentList {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--whiteDim);
+  line-height: 2.2rem;
+}
+.FooterLink {
+  color: var(--whiteDim);
+  transition: all 0.3s;
+}
+.FooterLink:hover {
+  color: var(--mainColor);
+}
+.ContentListContact {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: flex-start;
+}
+.ContentListIcon {
+  color: #f9f9fe;
+}
+
+.ContentListContact .ContentListText {
+  text-align: left;
+  width: 80%;
+}
+.ContentListLinks {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.8rem;
+}
+.footer_icon {
+  color: var(--whiteDim);
+  transition: all 0.3s;
+  font-size: 2rem;
+  margin-right: 0.8rem;
+}
+.ContentListLinks .FooterIcon:hover {
+  color: var(--mainColor);
+}
+.ContentListText {
+}
+.FooterForm {
+  flex-basis: 40%;
+  position: relative;
+  background-color: #f9f9fe;
+  height: 5rem;
+  padding: 0.1rem;
+  z-index: 1;
+  border-radius: 0.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.FooterForm .InputFooter {
+  width: 70%;
+  height: 100%;
+  font-size: 1.6rem;
+  padding-left: 0.8rem;
+  letter-spacing: 0.04rem;
+  border: none;
+  outline: none;
+  background-color: #f9f9fe;
+  z-index: 3;
+  margin: auto;
+}
+.FooterForm .BtnFooter {
+  width: 30%;
+  height: 70%;
+  letter-spacing: 0.04rem;
+  background-color: var(--mainColor);
+  text-align: center;
+  color: var(--white);
+  border-radius: 0.5rem;
+  line-height: 1rem;
+  border: none;
+  z-index: 10;
+  background: linear-gradient(to left bottom, var(--btnColor), var(--btnColor));
+}
+
+.InputFooter:focus {
+  border: none;
+  outline: none;
+}
+.InputFooter::placeholder {
+  color: var(--whiteDim) !important;
+  z-index: 11;
+}
+.InputFooter :not(:placeholder-shown) {
+  border: none !important;
+}
+
+.BtnFooter:hover {
+  background: linear-gradient(
+    to left bottom,
+    rgb(212, 212, 33) 1%,
+    var(--mainColor)
+  );
+}
+.FooterSub {
+  width: 90%;
+  margin: auto;
+  border-top: solid thin #f1f1f6;
+  font-family: "Poppins", sans-serif;
+  line-height: 2em;
+  font-size: 1.2rem;
+  color: var(--whiteDim);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 300;
+  padding: 2rem 0px 1rem;
+  text-align: center;
+  line-height: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  background: none;
+}
+.FooterSub .Developer {
+  color: var(--mainColor);
+}
+.FooterSub .Developer:hover {
+  color: var(--mainColor);
+}
+@media (max-width: 880px) {
+  .FooterCon {
+    flex-wrap: wrap;
+  }
+  .FooterPart {
+    flex-basis: 45%;
+  }
+}
+@media (max-width: 660px) {
+  .FooterPartOne {
+    order: 1;
+  }
+  .FooterPartTwo {
+    order: 2;
+  }
+  .FooterPart {
+    flex-basis: 49%;
+  }
+  .FooterPartNewsletter {
+    margin-top: 5rem;
+  }
+  .FooterSub {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    padding-bottom: 5%;
+  }
+}
