@@ -14,8 +14,6 @@ class ResetPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
-
-
     protected $data;
 
 
